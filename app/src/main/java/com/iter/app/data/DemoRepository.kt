@@ -57,4 +57,9 @@ object DemoRepository {
     }
 
     fun removeSupporter(name: String) = supporters.removeAll { it.name == name }
+
+    fun addSupporter(supporter: Supporter) {
+        supporters.removeAll { it.name == supporter.name }
+        supporters.add(supporter)
+    }
 }

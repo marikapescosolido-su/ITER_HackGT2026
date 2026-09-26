@@ -38,7 +38,7 @@ private fun scheme(c: Chrome, dark: Boolean) = (if (dark) darkColorScheme() else
     surfaceContainer = c.panel,
     surfaceContainerHigh = c.panel,
     surfaceContainerHighest = c.panel,
-    outline = c.charcoal,
+    outline = c.charcoal.copy(alpha = 0.35f), // unfocused text-field border: soft, close to the hairline style
     outlineVariant = c.hairline,
     error = Brand.TerracottaHover,
     errorContainer = Brand.Terracotta,
