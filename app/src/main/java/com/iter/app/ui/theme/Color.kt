@@ -29,6 +29,11 @@ data class Chrome(
     val ink: Color,
     val charcoal: Color,
     val hairline: Color,
+    /**
+     * Text color for outlined/text-only brand buttons. Spec says Sage-700 (#5A6144); in dark mode that is
+     * unreadable on #16180F, so dark mode uses Mist instead. Deliberate deviation for accessibility.
+     */
+    val brandText: Color,
 )
 
 val LightChrome = Chrome(
@@ -37,6 +42,7 @@ val LightChrome = Chrome(
     ink = Color(0xFF10130E),
     charcoal = Color(0xFF2E2E2E),
     hairline = Color(0xFF2E2E2E).copy(alpha = 0.14f),
+    brandText = Brand.SagePressed,
 )
 
 val DarkChrome = Chrome(
@@ -45,4 +51,5 @@ val DarkChrome = Chrome(
     ink = Color(0xFFECE8DE),
     charcoal = Color(0xFFB9B6AC),
     hairline = Color(0xFFE9E2D8).copy(alpha = 0.14f),
+    brandText = Brand.Mist,
 )

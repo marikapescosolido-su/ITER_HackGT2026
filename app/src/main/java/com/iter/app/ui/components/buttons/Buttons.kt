@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.iter.app.ui.theme.Brand
+import com.iter.app.ui.theme.IterTheme
 
-private val Charcoal = Color(0xFF2E2E2E)
 private val SageTint10 = Brand.Sage.copy(alpha = 0.10f)
 private val SageTint16 = Brand.Sage.copy(alpha = 0.16f)
 
@@ -38,9 +38,9 @@ fun SecondaryButton(
     icon: ImageVector? = null,
 ) = ButtonBase(
     text, onClick, modifier, enabled, sizeShape(size), size.minHeight, size.horizontalPadding, size.text,
-    normal = ButtonColors(Color.Transparent, Brand.SagePressed, Brand.Sage),
-    hovered = ButtonColors(SageTint10, Brand.SagePressed, Brand.Sage),
-    pressed = ButtonColors(SageTint16, Brand.SagePressed, Brand.Sage),
+    normal = ButtonColors(Color.Transparent, IterTheme.chrome.brandText, Brand.Sage),
+    hovered = ButtonColors(SageTint10, IterTheme.chrome.brandText, Brand.Sage),
+    pressed = ButtonColors(SageTint16, IterTheme.chrome.brandText, Brand.Sage),
     icon = icon,
 )
 
@@ -52,12 +52,15 @@ fun CautionButton(
     modifier: Modifier = Modifier,
     size: ButtonSize = ButtonSize.Medium,
     enabled: Boolean = true,
-) = ButtonBase(
-    text, onClick, modifier, enabled, sizeShape(size), size.minHeight, size.horizontalPadding, size.text,
-    normal = ButtonColors(Color.Transparent, Charcoal, Charcoal),
-    hovered = ButtonColors(Charcoal.copy(alpha = 0.06f), Charcoal, Charcoal),
-    pressed = ButtonColors(Charcoal.copy(alpha = 0.10f), Charcoal, Charcoal),
-)
+) {
+    val charcoal = IterTheme.chrome.charcoal // page-chrome color: adapts in dark mode per the spec
+    ButtonBase(
+        text, onClick, modifier, enabled, sizeShape(size), size.minHeight, size.horizontalPadding, size.text,
+        normal = ButtonColors(Color.Transparent, charcoal, charcoal),
+        hovered = ButtonColors(charcoal.copy(alpha = 0.06f), charcoal, charcoal),
+        pressed = ButtonColors(charcoal.copy(alpha = 0.10f), charcoal, charcoal),
+    )
+}
 
 /** I) The one reserved use of terracotta: crisis resources only. */
 @Composable

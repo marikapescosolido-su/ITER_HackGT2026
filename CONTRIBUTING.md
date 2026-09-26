@@ -29,16 +29,22 @@ domain/             Logic only, no UI. Easy to change and to test.
   ReportInsights.kt      the "AI-assisted" summary (rule-based for now)
 
 ui/
-  components/       Shared building blocks: ScreenColumn, SectionCard, ScaleQuestion,
+  components/       Shared building blocks: ScreenColumn, SectionCard/Panel, ScaleQuestion,
                     StatTile, SourceTag, LineChart
+    buttons/          The button system (spec A-K): PrimaryButton, SecondaryButton, TertiaryButton,
+                      CautionButton, IconCircleButton, UtilityButton, SegmentedControl,
+                      SupportPulseButton, HelplineButton, HelplineLink, StreakChip, ChoiceChip
+    icons/            IterIcons: outline icons, 1.8 stroke
   navigation/       Routes.kt (all route names) + AppNavHost.kt
-  demo/             Start screen: pick whose phone to show
-  patient/          PatientNavigation.kt + home/, checkin/, weekly/ (PHQ-9),
-                    safety/, sharing/ (privacy), onboarding/
+  demo/             Start screen (pick whose phone to show) + Design system gallery
+  patient/          PatientNavigation.kt + onboarding/, home/ (dashboard, notifications,
+                    missed survey, account), checkin/, weekly/ (PHQ-9), concern/ (alert
+                    overlay, 30-sec guide), safety/, sharing/ (share settings, invite)
   supporter/        SupporterNavigation.kt + home, nudge, weekly survey
-  clinician/        ClinicianNavigation.kt + ReportScreen, ReportSections,
-                    ReportCharts, ReportSettingsScreen, pdf/ReportPdfExporter
-  theme/            Blue + sage colors
+  clinician/        ClinicianNavigation.kt + ReportScreen, ReportSections, ReportCharts,
+                    ReportSettingsScreen, MedicationContextScreen, pdf/ReportPdfExporter
+  theme/            Design tokens: Brand colors (fixed), Chrome colors (light/dark),
+                    Fraunces + Sora fonts, button type scale
 
 notifications/      TODO: daily reminders
 tracking/           Interaction log (only when the patient allows it)
@@ -49,6 +55,17 @@ voice/              TODO (stretch): voice check-in
 `*Navigation.kt`. You don't need to touch `AppNavHost.kt`.
 
 **Changing wording:** supportive text lives in `domain/SupportMessages.kt`, so it can be reviewed in one place.
+
+## Design system rules (from the button spec)
+
+- Never use Material `Button`, `OutlinedButton`, `TextButton`, `FilterChip` or `Card`. Use `ui/components/buttons` and `SectionCard`.
+- One `PrimaryButton` per screen. A `SecondaryButton` only sits next to a primary, never alone.
+- Terracotta (`HelplineButton`, `HelplineLink`) is only for crisis resources.
+- `SegmentedControl` is only for assigning a supporter role. `SupportPulseButton` is only for the Concern Alert overlay.
+- Fraunces for page titles only; Sora for everything else (Material typography is already set up this way).
+- Colors: use `Brand.*` for brand colors and `IterTheme.chrome.*` for page, panel, text and hairline, so dark mode works.
+- Open the **Design system** card on the start screen to see every button.
+- One deliberate deviation: in dark mode, text-style brand buttons use Mist instead of Sage-700, because Sage-700 is unreadable on the dark page.
 
 ## Who owns what
 

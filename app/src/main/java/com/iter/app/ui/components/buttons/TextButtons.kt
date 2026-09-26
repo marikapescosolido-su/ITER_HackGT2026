@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iter.app.ui.theme.Brand
 import com.iter.app.ui.theme.ButtonText
+import com.iter.app.ui.theme.IterTheme
 
 /**
  * Text-only link-style button. Underline sits 3dp below the text.
@@ -70,7 +71,7 @@ fun TertiaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-) = TextLink(text, onClick, modifier, enabled, Brand.SagePressed, ButtonText.Medium, alwaysUnderlined = false)
+) = TextLink(text, onClick, modifier, enabled, IterTheme.chrome.brandText, ButtonText.Medium, alwaysUnderlined = false)
 
 /** I-2) Small, always-visible crisis link ("In crisis right now? Call the 988 Lifeline"). */
 @Composable
