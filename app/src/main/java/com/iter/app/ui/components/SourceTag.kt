@@ -18,7 +18,7 @@ fun SourceTag(source: DataSource) {
     val ink = Color(0xFF10130E)
     val (bg, fg) = when (source) {
         DataSource.Patient -> Brand.Mist to ink
-        DataSource.Supporter -> Brand.Sage.copy(alpha = 0.18f) to Brand.SagePressed
+        DataSource.Supporter -> Brand.Sage.copy(alpha = 0.18f) to Brand.SageText
         DataSource.Ai -> Brand.ChartSand.copy(alpha = 0.22f) to Color(0xFF6B5330)
         DataSource.Device, DataSource.Clinician -> Brand.ChartSlate.copy(alpha = 0.18f) to Color(0xFF3E4F61)
     }

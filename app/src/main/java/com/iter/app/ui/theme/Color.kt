@@ -3,14 +3,21 @@ package com.iter.app.ui.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-/** Brand colors. Fixed in light and dark mode (spec: only page chrome adapts). */
+/**
+ * Brand colors. Fixed in light and dark mode (spec: only page chrome adapts).
+ * The "Sage" names are kept, but the values are now the brighter Fern green (was #757F64).
+ */
 object Brand {
-    val Sage = Color(0xFF757F64)
-    val SageHover = Color(0xFF67704F)
-    val SagePressed = Color(0xFF5A6144) // also "Sage-700" text on outlined/text buttons
+    val Sage = Color(0xFF62A052)
+    val SageHover = Color(0xFF5A964A)
+    val SagePressed = Color(0xFF528C43)
+    /** Dark fern for green text on light pages (6:1 on the page); Fern itself is too light for text. */
+    val SageText = Color(0xFF3F6B34)
+    /** Text on Fern fills. Cream is unreadable on the brighter green (2.4:1), dark ink is 5.9:1. */
+    val OnSage = Color(0xFF10130E)
     val Cream = Color(0xFFE9E2D8)
-    val Mist = Color(0xFFC7CDBF)
-    val MistHover = Color(0xFFB1B9A9)
+    val Mist = Color(0xFFCFE3C4)
+    val MistHover = Color(0xFFBBD6AD)
 
     /** RESERVED for helpline / crisis messaging only. Never use for routine emphasis. */
     val Terracotta = Color(0xFFCB7A5C)
@@ -39,7 +46,7 @@ data class Chrome(
     val charcoal: Color,
     val hairline: Color,
     /**
-     * Text color for outlined/text-only brand buttons. Spec says Sage-700 (#5A6144); in dark mode that is
+     * Text color for outlined/text-only brand buttons: dark fern in light mode; in dark mode that is
      * unreadable on #16180F, so dark mode uses Mist instead. Deliberate deviation for accessibility.
      */
     val brandText: Color,
@@ -51,7 +58,7 @@ val LightChrome = Chrome(
     ink = Color(0xFF10130E),
     charcoal = Color(0xFF2E2E2E),
     hairline = Color(0xFF2E2E2E).copy(alpha = 0.14f),
-    brandText = Brand.SagePressed,
+    brandText = Brand.SageText,
 )
 
 val DarkChrome = Chrome(

@@ -32,6 +32,7 @@ fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit, onOpenMedicatio
         observations = repo.observations,
         windowDays = repo.reportSettings.windowDays,
         includeSupporter = repo.sharing.includeSupporterObservations,
+        doseLog = repo.doseLog,
     )
     val insights = ReportInsights.summarize(report)
 
@@ -54,6 +55,7 @@ fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit, onOpenMedicatio
         }
 
         SafetyFlagsSection(report)
+        RefillSection(report)
         OverviewSection(report)
         TreatmentSection(report)
         SummarySection(insights)

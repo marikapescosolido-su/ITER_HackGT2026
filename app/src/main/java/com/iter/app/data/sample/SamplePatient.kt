@@ -4,6 +4,7 @@ import com.iter.app.data.model.Baseline
 import com.iter.app.data.model.DoseChange
 import com.iter.app.data.model.Medication
 import com.iter.app.data.model.Patient
+import com.iter.app.data.model.PillSupply
 import java.time.LocalDate
 
 /** Demo patient: 6 weeks into sertraline, dose raised at day 21. */
@@ -21,9 +22,19 @@ object SamplePatient {
         clinic = "Midtown Health Clinic",
         treatmentStart = start,
         medications = listOf(
-            Medication("Sertraline", "100 mg", start, "Depression", isMonitored = true),
-            Medication("Cetirizine", "10 mg", start.minusYears(2), "Seasonal allergies"),
-            Medication("Vitamin D", "1000 IU", start.minusMonths(6), "Supplement"),
+            // Pill counts chosen so sertraline is close to running out (the report's refill signal).
+            Medication(
+                "Sertraline", "100 mg", start, "Depression", isMonitored = true,
+                supply = PillSupply(pillsOnHand = 24, countedOn = start.plusDays(TOTAL_DAYS - 25L)),
+            ),
+            Medication(
+                "Cetirizine", "10 mg", start.minusYears(2), "Seasonal allergies",
+                supply = PillSupply(pillsOnHand = 60, countedOn = start.plusDays(TOTAL_DAYS - 10L)),
+            ),
+            Medication(
+                "Vitamin D", "1000 IU", start.minusMonths(6), "Supplement",
+                supply = PillSupply(pillsOnHand = 90, countedOn = start.plusDays(TOTAL_DAYS - 30L)),
+            ),
         ),
         doseChanges = listOf(
             DoseChange(start.plusDays(DOSE_CHANGE_DAY.toLong()), "Sertraline", "50 mg", "100 mg"),

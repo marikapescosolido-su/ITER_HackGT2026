@@ -8,7 +8,8 @@ import com.iter.app.domain.WeeklyReport
  *
  * Plan (no new libraries needed):
  *  1. android.graphics.pdf.PdfDocument: A4 page is 595 x 842 points.
- *  2. Draw with android.graphics.Canvas + Paint: title, patient + period, the stat numbers,
+ *  2. Draw with android.graphics.Canvas + Paint: title, patient + period, report.refillAlerts near the top
+ *     ("Refill soon: Sertraline 100 mg, about 4 days left"), the stat numbers,
  *     the summary bullets (label them "AI-assisted"), simple line charts (drawLine per point,
  *     skip nulls), side effects, supporter view, missing days, notes, then every answer.
  *  3. Save to context.cacheDir/reports/iter-report.pdf.

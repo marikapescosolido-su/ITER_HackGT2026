@@ -51,7 +51,7 @@ fun <T> SegmentedControl(
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(label(option), style = ButtonText.Medium, color = if (isSelected) Brand.Cream else Color(0xFF2E2E2E))
+                Text(label(option), style = ButtonText.Medium, color = if (isSelected) Brand.OnSage else Color(0xFF2E2E2E))
             }
         }
     }

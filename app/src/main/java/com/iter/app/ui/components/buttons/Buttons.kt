@@ -21,9 +21,9 @@ fun PrimaryButton(
     icon: ImageVector? = null,
 ) = ButtonBase(
     text, onClick, modifier, enabled, sizeShape(size), size.minHeight, size.horizontalPadding, size.text,
-    normal = ButtonColors(Brand.Sage, Brand.Cream),
-    hovered = ButtonColors(Brand.SageHover, Brand.Cream),
-    pressed = ButtonColors(Brand.SagePressed, Brand.Cream),
+    normal = ButtonColors(Brand.Sage, Brand.OnSage),
+    hovered = ButtonColors(Brand.SageHover, Brand.OnSage),
+    pressed = ButtonColors(Brand.SagePressed, Brand.OnSage),
     icon = icon,
 )
 

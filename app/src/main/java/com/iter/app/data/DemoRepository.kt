@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.iter.app.data.model.CheckIn
+import com.iter.app.data.model.DoseRecord
 import com.iter.app.data.model.Nudge
 import com.iter.app.data.model.Phq9
 import com.iter.app.data.model.ReportSettings
@@ -13,6 +14,7 @@ import com.iter.app.data.model.SupportRole
 import com.iter.app.data.model.Supporter
 import com.iter.app.data.model.SupporterObservation
 import com.iter.app.data.sample.SampleCheckIns
+import com.iter.app.data.sample.SampleDoses
 import com.iter.app.data.sample.SamplePatient
 import com.iter.app.data.sample.SampleSupport
 import java.time.LocalDate
@@ -27,6 +29,8 @@ object DemoRepository {
     var reportSettings by mutableStateOf(ReportSettings())
 
     val checkIns = mutableStateListOf<CheckIn>().apply { addAll(SampleCheckIns.checkIns()) }
+    /** Which medications were taken on which days: the patient's medication calendar and the refill estimate. */
+    val doseLog = mutableStateListOf<DoseRecord>().apply { addAll(SampleDoses.doseLog(checkIns)) }
     val phq9s = mutableStateListOf<Phq9>().apply { addAll(SampleCheckIns.phq9s()) }
     val supporters = mutableStateListOf<Supporter>().apply { addAll(SampleSupport.supporters) }
     val observations = mutableStateListOf<SupporterObservation>().apply { addAll(SampleSupport.observations()) }
@@ -46,6 +50,11 @@ object DemoRepository {
         checkIns.removeAll { it.date == checkIn.date }
         checkIns.add(checkIn)
         checkIns.sortBy { it.date }
+        // The check-in's "did you take it?" answer is the monitored medication's dose record for that day.
+        val monitored = patient.monitoredMedication.name
+        doseLog.removeAll { it.date == checkIn.date && it.medication == monitored }
+        doseLog.add(DoseRecord(checkIn.date, monitored, checkIn.tookMedication))
+        doseLog.sortBy { it.date }
     }
 
     fun savePhq9(phq9: Phq9) {
