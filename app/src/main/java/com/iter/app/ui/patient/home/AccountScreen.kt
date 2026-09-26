@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
 import com.iter.app.domain.ReportSchedule
@@ -27,6 +29,20 @@ import com.iter.app.ui.components.buttons.TertiaryButton
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.theme.IterTheme
 import java.time.format.DateTimeFormatter
+
+private data class SmartwatchMetric(val label: String, val value: String)
+
+private val sampleSmartwatchMetrics = listOf(
+    SmartwatchMetric("Heart rate", "72 bpm"),
+    SmartwatchMetric("Heart rate variability", "48 ms"),
+    SmartwatchMetric("Blood oxygen", "98%"),
+    SmartwatchMetric("Electrocardiogram", "Recording available"),
+    SmartwatchMetric("Wrist temperature", "+0.2 °C from baseline"),
+    SmartwatchMetric("Blood pressure", "118/76 mmHg · connected cuff"),
+    SmartwatchMetric("Workout intensity", "Moderate · 34 min"),
+    SmartwatchMetric("Sleep stages", "7h 18m · 1h 12m deep"),
+    SmartwatchMetric("Respiratory rate", "15.2 breaths/min"),
+)
 
 @Composable
 fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
@@ -104,6 +120,7 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
                 style = MaterialTheme.typography.bodySmall,
             )
         }
+        SmartwatchCard()
         MedicationsCard()
         MedicationCalendarCard()
         SectionCard(title = "Daily reminder") {
@@ -115,5 +132,42 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
             Text("Reminders never show how you're feeling on the lock screen.", style = MaterialTheme.typography.bodySmall)
         }
         TertiaryButton("Redo onboarding", { onOpen(Routes.ONBOARDING) })
+    }
+}
+
+@Composable
+private fun SmartwatchCard() {
+    SectionCard(title = "Connected to your SmartWatch") {
+        Text(
+            "Apple Watch · Synced 4 minutes ago",
+            style = MaterialTheme.typography.bodyMedium,
+            color = IterTheme.chrome.brandText,
+        )
+        sampleSmartwatchMetrics.forEachIndexed { index, metric ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    metric.label,
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = IterTheme.chrome.charcoal,
+                )
+                Text(
+                    metric.value,
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.End,
+                )
+            }
+            if (index < sampleSmartwatchMetrics.lastIndex) HorizontalDivider()
+        }
+        Text(
+            "These wellness readings add context to your check-ins and do not replace clinical measurements. Blood pressure comes from a compatible cuff connected through Apple Health.",
+            style = MaterialTheme.typography.bodySmall,
+            color = IterTheme.chrome.charcoal,
+        )
     }
 }
