@@ -13,17 +13,17 @@ import kotlin.math.roundToInt
 object ReportInsights {
 
     fun summarize(report: WeeklyReport): List<String> = buildList {
-        for (q in listOf(Question.Mood, Question.Anxiety, Question.Energy, Question.SleepQuality)) {
+        for (q in listOf(Question.Mood, Question.Tension, Question.Exhaustion, Question.Sleep)) {
             changeSentence(q, report.average(q), report.previousAverage(q))?.let(::add)
         }
 
         val missed = report.checkIns.filter { !it.tookMedication }
         val taken = report.checkIns.filter { it.tookMedication }
-        val anxietyMissed = report.average(Question.Anxiety, missed)
-        val anxietyTaken = report.average(Question.Anxiety, taken)
-        if (anxietyMissed != null && anxietyTaken != null && anxietyMissed - anxietyTaken >= 1f) {
+        val tensionMissed = report.average(Question.Tension, missed)
+        val tensionTaken = report.average(Question.Tension, taken)
+        if (tensionMissed != null && tensionTaken != null && tensionMissed - tensionTaken >= 1f) {
             add(
-                "Anxiety was higher on days a dose was missed (${fmt(anxietyMissed)} vs ${fmt(anxietyTaken)}). " +
+                "Tension was higher on days a dose was missed (${fmt(tensionMissed)} vs ${fmt(tensionTaken)}). " +
                     "This is an association, not proof of cause.",
             )
         }
@@ -39,9 +39,10 @@ object ReportInsights {
         }
 
         report.observations.lastOrNull()?.let { obs ->
-            val patientMood = report.average(Question.Mood)
-            if (patientMood != null && abs(obs.mood - patientMood) >= 2f) {
-                add("${obs.supporterName}'s view of mood (${obs.mood}/10) differs from the patient's own average (${fmt(patientMood)}/10).")
+            // The supporter rates mood (higher = better); the patient rates low mood (higher = heavier).
+            val lowMood = report.average(Question.Mood)
+            if (lowMood != null && abs(obs.mood - (10f - lowMood)) >= 2f) {
+                add("${obs.supporterName}'s view of mood (${obs.mood}/10, higher = better) differs from the patient's own low-mood average (${fmt(lowMood)}/10, higher = heavier).")
             }
         }
 

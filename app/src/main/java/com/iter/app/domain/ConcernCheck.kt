@@ -8,14 +8,12 @@ import com.iter.app.data.model.Question
  * a real version needs clinician-reviewed rules. It only ever offers support; it never diagnoses.
  */
 object ConcernCheck {
-    private const val HIGH_ANXIETY = 8
-    private const val LOW_MOOD = 2
+    private const val HIGH = 8f
     private const val MANY_OPENS_TODAY = 8
 
     fun fromCheckIn(checkIn: CheckIn): Boolean {
-        val anxiety = checkIn.score(Question.Anxiety) ?: 0
-        val mood = checkIn.score(Question.Mood) ?: 10
-        return anxiety >= HIGH_ANXIETY || mood <= LOW_MOOD
+        // Higher = more noticeable on every question, so "low mood" is a high score.
+        return listOf(Question.Mood, Question.Tension).any { (checkIn.score(it) ?: 0f) >= HIGH }
     }
 
     /** Only used when the patient turned on interaction tracking. */

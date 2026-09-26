@@ -37,7 +37,7 @@ Team notes, kept next to the code so everyone sees the same list.
 
 ### Questions
 - A teammate is writing the final daily questions. They live in `data/model/Question.kt`
-  (one line per question) and `domain/MedicationProfiles.kt` (side effects per medication).
+  (one entry per question, with its "why we ask" text) and `domain/MedicationProfiles.kt` (side effects per medication).
 
 ### Bear and lantern ideas
 - A sleeping bear for the sleep question; more cubs sleeping for more hours of sleep.

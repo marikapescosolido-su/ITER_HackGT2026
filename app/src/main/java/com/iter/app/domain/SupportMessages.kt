@@ -17,7 +17,7 @@ object SupportMessages {
         return "$part, $name."
     }
 
-    const val CHECK_IN_INTRO = "Today's check-in takes about a minute. There are no right answers."
+    const val CHECK_IN_INTRO = "Today's check-in takes a few minutes. There are no right or wrong answers, and you can skip anything."
 
     /** No scores or comparisons: only the clinician sees the data. */
     fun afterCheckIn(clinicianName: String): List<String> = listOf(
@@ -26,8 +26,9 @@ object SupportMessages {
     )
 
     /** What a viewer sees about the patient (only if the patient allowed it). */
-    fun supporterUpdate(patientName: String, lastMood: Int?, detail: NotificationDetail): String? {
-        if (lastMood == null || lastMood > 4) return null
+    /** [lowMood] is the patient's Question.Mood score: how heavy or low mood felt (higher = lower mood). */
+    fun supporterUpdate(patientName: String, lowMood: Float?, detail: NotificationDetail): String? {
+        if (lowMood == null || lowMood < 6f) return null
         return when (detail) {
             NotificationDetail.WithName ->
                 "Hi, yesterday $patientName felt a bit down. Remember to be kind and check in when you can."

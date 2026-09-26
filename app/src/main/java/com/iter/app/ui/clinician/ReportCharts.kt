@@ -17,12 +17,12 @@ fun TrendChartsSection(report: WeeklyReport) {
     val start = formatDate(report.start)
     val end = formatDate(report.end)
 
-    SectionCard(title = "Mood, anxiety and energy (0-10)", source = DataSource.Patient) {
+    SectionCard(title = "Low mood, tension and exhaustion (0-10, higher = more)", source = DataSource.Patient) {
         LineChart(
             series = listOf(
-                ChartSeries("Mood", report.daily(Question.Mood), colors.primary),
-                ChartSeries("Anxiety", report.daily(Question.Anxiety), colors.tertiary),
-                ChartSeries("Energy", report.daily(Question.Energy), colors.secondary),
+                ChartSeries("Low mood", report.daily(Question.Mood), colors.primary),
+                ChartSeries("Tension", report.daily(Question.Tension), colors.tertiary),
+                ChartSeries("Exhaustion", report.daily(Question.Exhaustion), colors.secondary),
             ),
             yMax = 10f,
             startLabel = start,
@@ -31,11 +31,11 @@ fun TrendChartsSection(report: WeeklyReport) {
             markerLabel = doseChange?.let { "dose ${it.to}" },
         )
     }
-    SectionCard(title = "Sleep (hours and quality)", source = DataSource.Patient) {
+    SectionCard(title = "Sleep (hours, and disruption 0-10)", source = DataSource.Patient) {
         LineChart(
             series = listOf(
                 ChartSeries("Hours", report.dailySleepHours(), colors.secondary),
-                ChartSeries("Quality", report.daily(Question.SleepQuality), colors.primary),
+                ChartSeries("Disruption", report.daily(Question.Sleep), colors.primary),
             ),
             yMax = 12f,
             startLabel = start,

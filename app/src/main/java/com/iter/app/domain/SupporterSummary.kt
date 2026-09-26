@@ -20,8 +20,9 @@ object SupporterSummary {
         val thisWeek = avg(today.minusDays(6), today) ?: return Level.NotEnoughData
         val lastWeek = avg(today.minusDays(13), today.minusDays(7)) ?: return Level.NotEnoughData
         return when {
-            thisWeek <= lastWeek - 1 -> Level.Lower
-            thisWeek >= lastWeek + 1 -> Level.Brighter
+            // Question.Mood measures how heavy mood felt: a higher score means lower mood.
+            thisWeek >= lastWeek + 1 -> Level.Lower
+            thisWeek <= lastWeek - 1 -> Level.Brighter
             else -> Level.Same
         }
     }

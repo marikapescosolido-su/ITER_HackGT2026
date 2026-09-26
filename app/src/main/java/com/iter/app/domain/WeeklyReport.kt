@@ -65,6 +65,13 @@ object ReportBuilder {
             phq9s.filter { it.needsSafetyFollowUp && !it.date.isBefore(start) }.forEach {
                 add("PHQ-9 item 9 answered above 0 on ${it.date}. Please follow up.")
             }
+            inPeriod.forEach {
+                val selfHarm = it.score(Question.SelfHarm)
+                when {
+                    selfHarm != null && selfHarm > 0f -> add("Self-harm thoughts rated $selfHarm/10 on ${it.date}. Please follow up.")
+                    Question.SelfHarm in it.skipped -> add("Self-harm question skipped on ${it.date}. Please follow up.")
+                }
+            }
         }
 
         return WeeklyReport(

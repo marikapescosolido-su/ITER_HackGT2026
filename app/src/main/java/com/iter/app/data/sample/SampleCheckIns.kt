@@ -1,16 +1,16 @@
 package com.iter.app.data.sample
 
+import com.iter.app.data.model.AppetiteDirection
 import com.iter.app.data.model.CheckIn
 import com.iter.app.data.model.Phq9
 import com.iter.app.data.model.Question
 import com.iter.app.data.model.SideEffect
-import com.iter.app.domain.DailyQuestionPlan
-import com.iter.app.domain.MedicationProfiles
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /**
- * A believable story for the demo: mood improves slowly, tiredness peaks in weeks 2-4,
- * anxiety is higher on days a dose was missed, and two days are missing (shown as gaps).
+ * A believable story for the demo: low mood eases slowly, exhaustion peaks in weeks 2-4,
+ * tension is higher on days a dose was missed, and two days are missing (shown as gaps).
  * Today is left empty so the patient can check in live during the demo.
  */
 object SampleCheckIns {
@@ -25,9 +25,8 @@ object SampleCheckIns {
     fun checkIns(): List<CheckIn> {
         val rng = Random(7)
         fun around(center: Float, spread: Float = 1.2f) =
-            (center + (rng.nextFloat() * 2 - 1) * spread).toInt().coerceIn(0, 10)
+            ((center + (rng.nextFloat() * 2 - 1) * spread).coerceIn(0f, 10f) * 10).roundToInt() / 10f
 
-        val profile = MedicationProfiles.forMedication(SamplePatient.patient.monitoredMedication.name)
         return (0 until SamplePatient.TOTAL_DAYS).filterNot { it in missingDays }.map { day ->
             val date = SamplePatient.start.plusDays(day.toLong())
             val progress = day / SamplePatient.TOTAL_DAYS.toFloat()
@@ -35,22 +34,31 @@ object SampleCheckIns {
             val tookMedication = rng.nextFloat() > 0.1f
             val missedPenalty = if (tookMedication) 0f else 2f
 
-            val all = mapOf(
-                Question.Mood to around(3f + 4f * progress),
-                Question.Anxiety to around(7f - 3f * progress + missedPenalty),
-                Question.Energy to around(if (tired) 3f else 4f + 2.5f * progress),
-                Question.SleepQuality to around(4f + 3f * progress),
-                Question.Concentration to around(3.5f + 3f * progress),
-                Question.Appetite to around(if (day < 10) 4f else 6.5f),
-                Question.Stress to around(6f - 2f * progress),
-                Question.Connection to around(3f + 4f * progress),
-                Question.DailyTasks to around(3.5f + 3.5f * progress),
-                Question.Physical to around(if (day < 10) 4f else 6f),
+            val scores = mapOf(
+                Question.Mood to around(7f - 4f * progress),
+                Question.Enjoyment to around(7f - 4f * progress),
+                Question.Sleep to around(6f - 3f * progress),
+                Question.Appetite to around(if (day < 10) 6f else 2.5f),
+                Question.Tension to around(6f - 3f * progress + missedPenalty),
+                Question.Reading to around(6f - 3f * progress),
+                Question.Messages to around(7f - 4f * progress),
+                Question.Digestion to around(if (day < 10) 5f else 1.5f),
+                Question.Irritability to around(5f - 2f * progress + missedPenalty),
+                Question.LosingTrack to around(5f - 2.5f * progress),
+                Question.Exhaustion to around(if (tired) 7f else 6f - 2.5f * progress),
+                Question.Conversations to around(5f - 2.5f * progress),
+                Question.Concentration to around(6.5f - 3f * progress),
+                Question.SeeingFriends to around(7f - 4f * progress),
+                Question.EverydayBasics to around(6.5f - 3.5f * progress),
+                Question.RevvedUp to around(0.5f, spread = 0.5f),
+                Question.SelfHarm to 0f,
+                Question.JawNeckTension to around(5f - 2f * progress + missedPenalty),
+                Question.ChillsHotFlashes to around(2f - 1f * progress, spread = 1f),
             )
-            val asked = DailyQuestionPlan.questionsFor(date, profile)
             CheckIn(
                 date = date,
-                scores = all.filterKeys { it in asked },
+                scores = scores,
+                appetiteDirection = if (day < 10) AppetiteDirection.Less else null,
                 sleepHours = (5.5f + 1.5f * progress + (rng.nextFloat() - 0.5f)).coerceIn(3f, 10f),
                 tookMedication = tookMedication,
                 sideEffects = buildSet {

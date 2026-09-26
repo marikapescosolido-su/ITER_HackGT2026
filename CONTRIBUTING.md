@@ -9,7 +9,7 @@ and resets on restart. All code is under `app/src/main/java/com/iter/app/`.
 data/
   model/            Plain data classes (one topic per file)
     Patient.kt        patient, medications, dose changes, baseline
-    Question.kt       the 0-10 daily questions (core + rotating)
+    Question.kt       the 0-10 daily questions and their "why we ask" text
     CheckIn.kt        one daily check-in
     Phq9.kt           weekly PHQ-9 + safety flag
     SideEffect.kt
@@ -20,8 +20,7 @@ data/
   DemoRepository.kt In-memory state every screen reads and writes
 
 domain/             Logic only, no UI. Easy to change and to test.
-  DailyQuestionPlan.kt   which questions to ask today
-  MedicationProfiles.kt  side effects/questions per medication
+  MedicationProfiles.kt  side effects per medication
   Streak.kt              streak with a one-day grace period
   Lantern.kt             weekly lantern level (+1 per check-in, -1 per missed day, never out)
   SupporterSummary.kt    the only thing a partner learns about mood: lower / same / brighter

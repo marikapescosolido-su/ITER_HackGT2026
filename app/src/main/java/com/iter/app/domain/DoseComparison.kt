@@ -15,7 +15,7 @@ data class DoseComparison(
     val sideEffectsAfter: Map<SideEffect, Int>,
 ) {
     companion object {
-        val QUESTIONS = listOf(Question.Mood, Question.Anxiety, Question.Energy, Question.SleepQuality)
+        val QUESTIONS = listOf(Question.Mood, Question.Tension, Question.Exhaustion, Question.Sleep)
 
         fun build(change: DoseChange, checkIns: List<CheckIn>, days: Int = 14): DoseComparison {
             val before = checkIns.filter { it.date.isBefore(change.date) && !it.date.isBefore(change.date.minusDays(days.toLong())) }

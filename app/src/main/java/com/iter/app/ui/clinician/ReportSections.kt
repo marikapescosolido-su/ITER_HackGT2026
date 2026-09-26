@@ -53,7 +53,7 @@ fun OverviewSection(report: WeeklyReport) {
         StatTile("PHQ-9", latestPhq?.total?.toString() ?: "–", latestPhq?.severity, Modifier.weight(1f))
     }
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        listOf(Question.Mood, Question.Anxiety, Question.Energy).forEach { q ->
+        listOf(Question.Mood, Question.Tension, Question.Exhaustion).forEach { q ->
             StatTile(
                 q.label,
                 formatAverage(report.average(q)),
@@ -111,7 +111,7 @@ fun SupporterSection(report: WeeklyReport) {
         Text("Mood ${latest.mood}/10 · Energy ${latest.energy}/10 · Sleep ${latest.sleep}/10 · Social ${latest.social}/10")
         if (latest.note.isNotBlank()) Text("“${latest.note}”")
         Text(
-            "Patient's own average mood this period: ${formatAverage(report.average(Question.Mood))}/10",
+            "Patient's own low-mood average this period (higher = heavier): ${formatAverage(report.average(Question.Mood))}/10",
             style = MaterialTheme.typography.bodySmall,
         )
     }
@@ -147,10 +147,14 @@ fun ClinicianNotesSection() {
 fun RawAnswersSection(report: WeeklyReport) {
     SectionCard(title = "All answers", source = DataSource.Patient) {
         report.checkIns.forEach { c ->
-            val scores = c.scores.entries.joinToString { "${it.key.label} ${it.value}" }
+            val scores = c.scores.entries.map { (q, v) ->
+                val direction = c.appetiteDirection?.takeIf { q == Question.Appetite }?.let { " (${it.label.lowercase()})" }.orEmpty()
+                "${q.label} $v$direction"
+            }
+            val answers = (scores + c.skipped.map { "${it.label} skipped" }).joinToString()
             val meds = if (c.tookMedication) "dose taken" else "dose missed"
             val effects = c.sideEffects.joinToString { it.label }.ifEmpty { "no side effects" }
-            Text("${formatDate(c.date)}: $scores · sleep ${c.sleepHours} h · $meds · $effects", style = MaterialTheme.typography.bodySmall)
+            Text("${formatDate(c.date)}: $answers · sleep ${c.sleepHours} h · $meds · $effects", style = MaterialTheme.typography.bodySmall)
         }
     }
 }

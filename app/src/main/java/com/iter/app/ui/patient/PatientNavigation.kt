@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.iter.app.data.DemoRepository
 import com.iter.app.domain.ConcernCheck
+import com.iter.app.domain.Safety
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.patient.checkin.CheckInDoneScreen
 import com.iter.app.ui.patient.checkin.CheckInScreen
@@ -30,6 +31,10 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
     }
     composable(Routes.CHECK_IN) {
         CheckInScreen(onBack = { nav.popBackStack() }, onSubmitted = { checkIn ->
+            if (Safety.needsFollowUp(checkIn)) {
+                nav.navigate(Routes.SAFETY) { popUpTo(Routes.PATIENT_HOME) }
+                return@CheckInScreen
+            }
             if (ConcernCheck.fromCheckIn(checkIn)) DemoRepository.concernPending = true
             nav.navigate(Routes.CHECK_IN_DONE) { popUpTo(Routes.PATIENT_HOME) }
         })
