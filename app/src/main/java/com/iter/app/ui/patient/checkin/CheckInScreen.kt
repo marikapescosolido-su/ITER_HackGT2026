@@ -1,6 +1,7 @@
 package com.iter.app.ui.patient.checkin
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LinearProgressIndicator
@@ -17,13 +18,16 @@ import androidx.compose.ui.unit.dp
 import com.iter.app.data.model.CheckIn
 import com.iter.app.tracking.InteractionLog
 import com.iter.app.ui.components.ScreenColumn
+import com.iter.app.ui.components.buttons.IconCircleButton
 import com.iter.app.ui.components.buttons.PrimaryButton
 import com.iter.app.ui.components.buttons.TertiaryButton
+import com.iter.app.ui.components.icons.IterIcons
 import com.iter.app.ui.theme.IterTheme
 
 /**
  * Daily check-in, one question per screen (Daily_Check_In_Questions.md), then medication and an optional note.
  * Question screens have Back + Skip + Next; Next only enables once the slider has been moved.
+ * The X leaves for home at any step; answers so far are discarded (no saved progress yet).
  */
 @Composable
 fun CheckInScreen(onBack: () -> Unit, onSubmitted: (CheckIn) -> Unit) {
@@ -58,7 +62,15 @@ fun CheckInScreen(onBack: () -> Unit, onSubmitted: (CheckIn) -> Unit) {
         }
     }
 
-    ScreenColumn(title = title, subtitle = subtitle) {
+    ScreenColumn(
+        title = title,
+        subtitle = subtitle,
+        topBar = {
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+                IconCircleButton(IterIcons.Close, "Close check-in", onBack)
+            }
+        },
+    ) {
         LinearProgressIndicator(
             progress = { (step + 1) / (last + 1).toFloat() },
             modifier = Modifier.fillMaxWidth(),
