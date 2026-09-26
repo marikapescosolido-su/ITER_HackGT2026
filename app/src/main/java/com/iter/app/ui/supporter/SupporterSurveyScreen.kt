@@ -1,6 +1,5 @@
 package com.iter.app.ui.supporter
 
-import com.iter.app.ui.components.buttons.PrimaryButton
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -17,6 +16,7 @@ import com.iter.app.data.model.SupporterObservation
 import com.iter.app.ui.components.ScaleQuestion
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
+import com.iter.app.ui.components.buttons.PrimaryButton
 import kotlin.math.roundToInt
 
 /** Weekly survey from the supporter's point of view. Shown separately from the patient's answers. */

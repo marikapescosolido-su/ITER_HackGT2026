@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
+import com.iter.app.domain.ReportSchedule
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
 import com.iter.app.ui.components.buttons.ChoiceChip
@@ -21,6 +22,13 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
         SectionCard(title = p.name) {
             Text("Care team: ${p.clinicianName}, ${p.clinic}", style = MaterialTheme.typography.bodyMedium)
             Text("Monitoring: ${p.monitoredMedication.name} ${p.monitoredMedication.dose}", style = MaterialTheme.typography.bodyMedium)
+        }
+        SectionCard(title = "Reports") {
+            Text(
+                "Sent to ${p.clinicianName} ${ReportSchedule.label(repo.reportSettings.intervalDays)}, automatically by email.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Text("Set together with your clinician. To change it, ask at your next appointment.", style = MaterialTheme.typography.bodySmall)
         }
         SectionCard(title = "Daily reminder") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

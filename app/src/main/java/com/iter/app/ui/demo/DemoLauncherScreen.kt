@@ -17,7 +17,6 @@ fun DemoLauncherScreen(onOpen: (String) -> Unit) {
     ScreenColumn(title = "ITER", subtitle = "Your treatment journey, one day at a time. Choose whose phone to show:") {
         LauncherCard("Patient", "${patient.name}'s phone: daily check-in, streak, sharing") { onOpen(Routes.PATIENT_HOME) }
         LauncherCard("Supporter", "Sam's phone (partner): updates, nudges, weekly observation") { onOpen(Routes.SUPPORTER_HOME) }
-        LauncherCard("Clinician", "${patient.clinicianName}'s weekly report (sent as a PDF)") { onOpen(Routes.REPORT) }
         LauncherCard("New patient", "Onboarding and baseline assessment") { onOpen(Routes.ONBOARDING) }
         LauncherCard("Concern alert", "Patient home as if today's answers suggested a hard day") {
             DemoRepository.concernPending = true

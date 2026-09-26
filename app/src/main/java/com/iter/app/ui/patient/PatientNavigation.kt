@@ -3,11 +3,11 @@ package com.iter.app.ui.patient
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.iter.app.data.DemoRepository
+import com.iter.app.domain.ConcernCheck
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.patient.checkin.CheckInDoneScreen
 import com.iter.app.ui.patient.checkin.CheckInScreen
-import com.iter.app.data.DemoRepository
-import com.iter.app.domain.ConcernCheck
 import com.iter.app.ui.patient.concern.VoiceCheckInScreen
 import com.iter.app.ui.patient.home.AccountScreen
 import com.iter.app.ui.patient.home.MissedSurveyScreen
@@ -35,6 +35,7 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
         })
     }
     composable(Routes.CHECK_IN_DONE) { CheckInDoneScreen(onDone = { nav.popBackStack() }) }
+    // Weekly PHQ-9: removed from the demo (daily check-in covers it). Kept for a possible future version.
     composable(Routes.PHQ9) {
         Phq9Screen(onBack = { nav.popBackStack() }, onSubmitted = { needsSafety ->
             if (needsSafety) {

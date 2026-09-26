@@ -1,6 +1,5 @@
 package com.iter.app.ui.clinician
 
-import com.iter.app.ui.components.buttons.ChoiceChip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,8 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
+import com.iter.app.domain.ReportSchedule
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
+import com.iter.app.ui.components.buttons.ChoiceChip
 
 /** Clinician chooses how often reports are sent and how many days they cover. */
 @Composable
@@ -24,8 +25,8 @@ fun ReportSettingsScreen(onBack: () -> Unit) {
     ScreenColumn(title = "Report settings", subtitle = "Set by the clinician. The patient can see when reports are sent and to whom.", onBack = onBack) {
         SectionCard(title = "Send a report every") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf(7, 14, 28).forEach { days ->
-                    ChoiceChip("$days days", s.intervalDays == days, { repo.reportSettings = s.copy(intervalDays = days) })
+                ReportSchedule.options.forEach { days ->
+                    ChoiceChip(ReportSchedule.chipLabel(days), s.intervalDays == days, { repo.reportSettings = s.copy(intervalDays = days) })
                 }
             }
         }

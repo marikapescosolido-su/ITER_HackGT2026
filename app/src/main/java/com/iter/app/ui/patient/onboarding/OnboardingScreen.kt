@@ -15,18 +15,18 @@ import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.theme.IterTheme
 
 /**
- * Wireflow: Sign up -> Family history -> Medication setup -> Support circle.
+ * Wireflow: Sign up -> Family history -> Medication setup -> Care team -> Support circle.
  * Only the support circle step can be skipped (family history feeds survey personalization).
  */
 @Composable
 fun OnboardingScreen(onBack: () -> Unit, onFinished: () -> Unit) {
     val state = remember { OnboardingState() }
     var step by remember { mutableIntStateOf(0) }
-    val steps = 4
+    val steps = 5
     val back: () -> Unit = { if (step == 0) onBack() else step-- }
 
     ScreenColumn(
-        title = listOf("Welcome to ITER", "Family history", "Your medication", "Your support circle")[step],
+        title = listOf("Welcome to ITER", "Family history", "Your medication", "Your care team", "Your support circle")[step],
         subtitle = if (step == 0) null else "Step $step of ${steps - 1}",
         onBack = back,
     ) {
@@ -42,6 +42,7 @@ fun OnboardingScreen(onBack: () -> Unit, onFinished: () -> Unit) {
                 0 -> SignUpStep(state, onCreate = { step = 1 }, onLogIn = onFinished)
                 1 -> FamilyHistoryStep(state, onContinue = { step = 2 })
                 2 -> MedicationStep(state, onContinue = { step = 3 })
+                3 -> CareTeamStep(state, onContinue = { step = 4 })
                 else -> SupportCircleStep(
                     state,
                     onInvite = { state.save(invite = true); onFinished() },

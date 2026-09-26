@@ -19,6 +19,9 @@ class OnboardingState {
     var medication by mutableStateOf(patient.monitoredMedication.name)
     var dose by mutableStateOf(patient.monitoredMedication.dose)
     var otherMedications by mutableStateOf(patient.medications.filterNot { it.isMonitored }.joinToString { "${it.name} ${it.dose}" })
+    var clinicianName by mutableStateOf(patient.clinicianName)
+    var clinicianEmail by mutableStateOf(DemoRepository.reportSettings.doctorEmail)
+    var reportEveryDays by mutableStateOf(DemoRepository.reportSettings.intervalDays)
     var inviteName by mutableStateOf("")
     var inviteRelation by mutableStateOf("")
     var inviteContact by mutableStateOf("")
@@ -26,6 +29,7 @@ class OnboardingState {
     val canCreateAccount get() = name.isNotBlank() && email.contains("@")
     val familyAnswered get() = familyConditions.isNotEmpty()
     val medicationAnswered get() = medication.isNotBlank() && dose.isNotBlank()
+    val careTeamAnswered get() = clinicianName.isNotBlank() && clinicianEmail.contains("@")
     val canInvite get() = inviteName.isNotBlank() && inviteContact.isNotBlank()
 
     fun save(invite: Boolean) {
@@ -34,8 +38,13 @@ class OnboardingState {
         }
         val history = familyConditions.filterNot { it == NONE_KNOWN } +
             listOfNotNull(familyNotes.trim().takeIf { it.isNotEmpty() })
+        DemoRepository.reportSettings = DemoRepository.reportSettings.copy(
+            doctorEmail = clinicianEmail.trim(),
+            intervalDays = reportEveryDays,
+        )
         DemoRepository.patient = patient.copy(
             name = name.trim().ifEmpty { patient.name },
+            clinicianName = clinicianName.trim().ifEmpty { patient.clinicianName },
             medications = meds,
             baseline = patient.baseline.copy(familyHistory = history.ifEmpty { listOf("None known") }),
         )

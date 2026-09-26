@@ -1,8 +1,6 @@
 package com.iter.app.domain
 
-import com.iter.app.data.model.CheckIn
 import com.iter.app.data.model.NotificationDetail
-import com.iter.app.data.model.Question
 
 /**
  * All supportive wording in one place so it can be reviewed together.
@@ -21,16 +19,11 @@ object SupportMessages {
 
     const val CHECK_IN_INTRO = "Today's check-in takes about a minute. There are no right answers."
 
-    fun afterCheckIn(today: CheckIn, yesterday: CheckIn?, clinicianName: String): List<String> {
-        val todayMood = today.score(Question.Mood)
-        val yesterdayMood = yesterday?.score(Question.Mood)
-        val first = if (todayMood != null && yesterdayMood != null && todayMood <= yesterdayMood - 2) {
-            "It looks like today was more difficult than yesterday. Your response has been recorded so that the change is not lost."
-        } else {
-            "Thank you for checking in today."
-        }
-        return listOf(first, "Your answers will be part of $clinicianName's next report.")
-    }
+    /** No scores or comparisons: only the clinician sees the data. */
+    fun afterCheckIn(clinicianName: String): List<String> = listOf(
+        "Thank you for checking in today.",
+        "Your answers go to $clinicianName with your next report. Only your care team sees them.",
+    )
 
     /** What a viewer sees about the patient (only if the patient allowed it). */
     fun supporterUpdate(patientName: String, lastMood: Int?, detail: NotificationDetail): String? {

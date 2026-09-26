@@ -10,8 +10,7 @@ import com.iter.app.data.model.Question
 import com.iter.app.data.model.SupportRole
 import com.iter.app.domain.Streak
 import com.iter.app.domain.SupportMessages
-import com.iter.app.ui.components.ChartSeries
-import com.iter.app.ui.components.LineChart
+import com.iter.app.domain.SupporterSummary
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
 import com.iter.app.ui.components.buttons.PrimaryButton
@@ -65,12 +64,14 @@ fun SupporterHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
             }
         }
 
-        val recent = repo.checkIns.takeLast(14)
-        SectionCard(title = "Mood, last two weeks") {
-            LineChart(
-                series = listOf(ChartSeries("Mood", recent.map { it.score(Question.Mood)?.toFloat() }, MaterialTheme.colorScheme.primary)),
-                yMax = 10f,
-            )
+        if (repo.sharing.supporterMoodNotifications) {
+            SectionCard(title = "This week") {
+                Text(SupporterSummary.sentence(patient.name, SupporterSummary.level(repo.checkIns)))
+                Text(
+                    "You'll never see ${patient.name}'s answers. Only their care team does.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
         }
 
         SectionCard(title = "Your weekly check-in") {

@@ -1,10 +1,8 @@
 package com.iter.app.ui.clinician
 
-import androidx.compose.foundation.layout.Column
-import com.iter.app.ui.components.icons.IterIcons
-import com.iter.app.ui.components.buttons.UtilityButton
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +14,8 @@ import com.iter.app.domain.ReportBuilder
 import com.iter.app.domain.ReportInsights
 import com.iter.app.ui.clinician.pdf.ReportPdfExporter
 import com.iter.app.ui.components.ScreenColumn
+import com.iter.app.ui.components.buttons.UtilityButton
+import com.iter.app.ui.components.icons.IterIcons
 
 /**
  * The weekly report. The doctor receives this as a PDF; this screen is the same content on the phone.

@@ -10,8 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
+import com.iter.app.domain.ConcernCheck
 import com.iter.app.domain.Streak
 import com.iter.app.domain.SupportMessages
+import com.iter.app.tracking.InteractionLog
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.buttons.IconCircleButton
 import com.iter.app.ui.components.buttons.StreakChip
@@ -19,8 +21,6 @@ import com.iter.app.ui.components.buttons.TertiaryButton
 import com.iter.app.ui.components.icons.IterIcons
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.patient.concern.ConcernAlertOverlay
-import com.iter.app.domain.ConcernCheck
-import com.iter.app.tracking.InteractionLog
 import java.time.LocalTime
 
 /** Home dashboard (wireflow). Sections live in HomeSections.kt. */
@@ -37,9 +37,7 @@ fun PatientHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
 
         if (repo.todaysCheckIn == null) DailySurveyPrompt(onOpen) else CheckedInCard(streak.message)
         LatestNudgeCard()
-        WeeklyQuestionsCard(onOpen)
-        TrendCard()
-        TertiaryButton("Preview my report", { onOpen(Routes.REPORT) })
+        ReportScheduleCard()
         CrisisBanner()
     }
 

@@ -1,8 +1,5 @@
 package com.iter.app.ui.patient.safety
 
-import com.iter.app.ui.components.icons.IterIcons
-import com.iter.app.ui.components.buttons.TertiaryButton
-import com.iter.app.ui.components.buttons.HelplineButton
 import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +11,9 @@ import androidx.core.net.toUri
 import com.iter.app.domain.Safety
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
+import com.iter.app.ui.components.buttons.HelplineButton
+import com.iter.app.ui.components.buttons.TertiaryButton
+import com.iter.app.ui.components.icons.IterIcons
 
 /** Shown when answers suggest a safety concern. Calm wording; points to real people. */
 @Composable
