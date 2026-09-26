@@ -6,7 +6,7 @@ ITER helps patients record their mood, anxiety, sleep, physical well-being, medi
 
 ## Full project description
 
-For the complete concept—including patient onboarding,[daily check-in surveys](https://github.com/marikapescosolido-su/ITER_HackGT2026/blob/main/Daily_Check_In_Questions.md), personalized medication monitoring, supportive nudging, shared challenges, viewer notifications, clinician reports, AI-assisted analysis, hospital research consent, privacy, and safety—read the [full ITER project description](ITER_PROJECT_DESCRIPTION.md).
+For the complete concept—including patient onboarding, [daily check-in surveys](https://github.com/marikapescosolido-su/ITER_HackGT2026/blob/main/Daily_Check_In_Questions.md), personalized medication monitoring, supportive nudging, shared challenges, viewer notifications, clinician reports, AI-assisted analysis, hospital research consent, privacy, and safety—read the [full ITER project description](ITER_PROJECT_DESCRIPTION.md).
 
 > ITER is intended to support clinical monitoring and informed conversations. It does not diagnose conditions, prescribe medication, or replace qualified medical care.
 
