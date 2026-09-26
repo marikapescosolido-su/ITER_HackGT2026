@@ -209,7 +209,7 @@ Thoughts about death or suicide can change quickly and may not be visible to oth
 
 The slider must **not** be the only safety assessment. Any answer above `0`, an unanswered safety question, or concerning changes elsewhere in the survey should trigger direct, clinically approved follow-up questions. A response suggesting current or immediate danger must activate the app's emergency safety pathway rather than waiting for a later report.
 
-## 18. Tension
+### 18. Tension
 Today, how much tension did you notice in your jaw or neck—like clenching your teeth, holding your shoulders tight, or finding it hard to relax those muscles?
 
 Slider: `0 — Not at all` to `10 — Extremely`
@@ -218,7 +218,7 @@ Slider: `0 — Not at all` to `10 — Extremely`
 
 Jaw and neck tension can be connected to stress, worry, sleep, posture, teeth grinding, pain, or medication effects. Tracking where the tension occurs and how long it lasts can help the care team understand whether it follows changes in mood, daily circumstances, or treatment.
 
-## 19. Tension
+### 19. Tension
 Today, did you have any sudden chills or hot flashes around the times you felt low, stressed, or overwhelmed?
 
 Slider: `0 — Not at all` to `10 — Extremely`
@@ -227,7 +227,7 @@ Slider: `0 — Not at all` to `10 — Extremely`
 
 Sudden temperature sensations can accompany changes in the body’s stress response, but they may also be related to medication, hormones, illness, or the environment. Recording when they happen and what else is happening at the same time gives the care team useful context without assuming a single cause.
 
-## 20. Optional closing note
+### 20. Optional closing note
 
 After the slider questions, offer an optional text or voice field:
 
