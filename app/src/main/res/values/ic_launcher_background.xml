@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sampled from the edge of the lantern artwork so the tile fades into it. -->
+    <color name="ic_launcher_background">#405C34</color>
+</resources>
