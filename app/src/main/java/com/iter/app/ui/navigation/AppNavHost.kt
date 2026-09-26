@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.iter.app.ui.clinician.clinicianScreens
 import com.iter.app.ui.demo.DemoLauncherScreen
+import com.iter.app.ui.demo.DesignGalleryScreen
 import com.iter.app.ui.patient.patientScreens
 import com.iter.app.ui.supporter.supporterScreens
 
@@ -15,6 +16,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
     val nav = rememberNavController()
     NavHost(nav, startDestination = Routes.DEMO, modifier = modifier) {
         composable(Routes.DEMO) { DemoLauncherScreen(onOpen = { nav.navigate(it) }) }
+        composable(Routes.DESIGN) { DesignGalleryScreen(onBack = { nav.popBackStack() }) }
         patientScreens(nav)
         supporterScreens(nav)
         clinicianScreens(nav)

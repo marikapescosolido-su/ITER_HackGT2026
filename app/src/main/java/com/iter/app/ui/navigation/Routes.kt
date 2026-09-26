@@ -3,6 +3,7 @@ package com.iter.app.ui.navigation
 /** Every screen's route. Add new routes here, then register them in that area's *Navigation.kt. */
 object Routes {
     const val DEMO = "demo"
+    const val DESIGN = "demo/design"
 
     // Patient (Alex's phone)
     const val ONBOARDING = "patient/onboarding"
