@@ -36,6 +36,7 @@ import com.iter.app.ui.components.icons.IterIcons
 fun DesignGalleryScreen(onBack: () -> Unit) {
     var role by remember { mutableStateOf(SupportRole.Nudger) }
     ScreenColumn(title = "Design system", subtitle = "Every button from the spec, A to K.", onBack = onBack) {
+        Group("Brighter green options (pick one)") { GreenShadeOptions() }
         Group("A Primary: L / M / S") {
             PrimaryButton("Start today's check-in", {}, Modifier.fillMaxWidth(), size = ButtonSize.Large)
             PrimaryButton("Continue", {}, size = ButtonSize.Medium)
