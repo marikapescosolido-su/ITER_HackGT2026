@@ -1,24 +1,48 @@
 package com.iter.app.ui.theme
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-// Calm blue + sage palette
-val Sage = Color(0xFF7D9B82)
-val SageLight = Color(0xFFDDE8DC)
-val SageDark = Color(0xFF4F6B55)
-val CalmBlue = Color(0xFF5B84B1)
-val CalmBlueLight = Color(0xFFDCE6F2)
-val CalmBlueDark = Color(0xFF3A5F87)
-val Mist = Color(0xFFF6F8F5)
-val Ink = Color(0xFF1F2A24)
-val InkDark = Color(0xFFE3E9E3)
-val Night = Color(0xFF151B18)
-val NightSurface = Color(0xFF1E2621)
-val Sand = Color(0xFFB88A4A)
-val SandLight = Color(0xFFF1E4CF)
-val SageSurface1 = Color(0xFFEEF3EC)
-val SageSurface2 = Color(0xFFE6EDE4)
-val SageSurface3 = Color(0xFFDDE6DB)
-val NightSurface1 = Color(0xFF232C26)
-val NightSurface2 = Color(0xFF29332C)
-val NightSurface3 = Color(0xFF303B33)
+/** Brand colors. Fixed in light and dark mode (spec: only page chrome adapts). */
+object Brand {
+    val Sage = Color(0xFF757F64)
+    val SageHover = Color(0xFF67704F)
+    val SagePressed = Color(0xFF5A6144) // also "Sage-700" text on outlined/text buttons
+    val Cream = Color(0xFFE9E2D8)
+    val Mist = Color(0xFFC7CDBF)
+    val MistHover = Color(0xFFB1B9A9)
+
+    /** RESERVED for helpline / crisis messaging only. Never use for routine emphasis. */
+    val Terracotta = Color(0xFFCB7A5C)
+    val TerracottaHover = Color(0xFFB8663F)
+
+    /** Chart series (not in the button spec; muted so they sit next to sage). */
+    val ChartSlate = Color(0xFF5E7389)
+    val ChartSand = Color(0xFFB08F5A)
+}
+
+/** Page chrome. Changes between light and dark mode. */
+@Immutable
+data class Chrome(
+    val page: Color,
+    val panel: Color,
+    val ink: Color,
+    val charcoal: Color,
+    val hairline: Color,
+)
+
+val LightChrome = Chrome(
+    page = Color(0xFFFCFAFA),
+    panel = Color(0xFFF6F3EE),
+    ink = Color(0xFF10130E),
+    charcoal = Color(0xFF2E2E2E),
+    hairline = Color(0xFF2E2E2E).copy(alpha = 0.14f),
+)
+
+val DarkChrome = Chrome(
+    page = Color(0xFF16180F),
+    panel = Color(0xFF1D2016),
+    ink = Color(0xFFECE8DE),
+    charcoal = Color(0xFFB9B6AC),
+    hairline = Color(0xFFE9E2D8).copy(alpha = 0.14f),
+)
