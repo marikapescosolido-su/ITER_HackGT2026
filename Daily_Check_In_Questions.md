@@ -185,7 +185,7 @@ Slider: `0 — They felt manageable` to `10 — I could not manage them`
 
 #### Why are we asking you this?
 
-Everyday functioning helps show how strongly symptoms are affecting a person's life. It can also reveal improvement that may not yet appear in an overall mood score.
+Every day functioning helps show how strongly symptoms are affecting a person's life. It can also reveal improvement that may not yet appear in an overall mood score.
 
 ### 16. Feeling unusually “revved up”
 
@@ -218,7 +218,7 @@ Slider: `0 — Not at all` to `10 — Extremely`
 
 Jaw and neck tension can be connected to stress, worry, sleep, posture, teeth grinding, pain, or medication effects. Tracking where the tension occurs and how long it lasts can help the care team understand whether it follows changes in mood, daily circumstances, or treatment.
 
-### 19. Tension
+### 19. Sudden chills
 Today, did you have any sudden chills or hot flashes around the times you felt low, stressed, or overwhelmed?
 
 Slider: `0 — Not at all` to `10 — Extremely`
