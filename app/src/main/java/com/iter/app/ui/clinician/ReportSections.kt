@@ -13,6 +13,8 @@ import com.iter.app.data.model.Question
 import com.iter.app.domain.WeeklyReport
 import com.iter.app.ui.components.SectionCard
 import com.iter.app.ui.components.StatTile
+import com.iter.app.ui.theme.Brand
+import com.iter.app.ui.theme.LightChrome
 
 // Text sections of the report. Charts are in ReportCharts.kt.
 
@@ -21,6 +23,24 @@ fun SafetyFlagsSection(report: WeeklyReport) {
     if (report.safetyFlags.isEmpty()) return
     SectionCard(title = "Needs follow-up", source = DataSource.Patient, containerColor = MaterialTheme.colorScheme.errorContainer) {
         report.safetyFlags.forEach { Text(it) }
+    }
+}
+
+/** Pills running out soon. Not terracotta: that is reserved for crisis resources. */
+@Composable
+fun RefillSection(report: WeeklyReport) {
+    if (report.refillAlerts.isEmpty()) return
+    SectionCard(title = "Refill soon", source = DataSource.Patient, containerColor = Brand.Mist) {
+        report.refillAlerts.forEach { alert ->
+            val m = alert.medication
+            val left = if (alert.daysLeft == 0) "has run out" else "about ${alert.daysLeft} days left, runs out ${formatDate(alert.runsOutOn)}"
+            Text("${m.name} ${m.dose}: $left", style = MaterialTheme.typography.titleSmall, color = LightChrome.ink)
+        }
+        Text(
+            "Estimated from the patient's last pill count and the doses logged since.",
+            style = MaterialTheme.typography.bodySmall,
+            color = LightChrome.ink,
+        )
     }
 }
 

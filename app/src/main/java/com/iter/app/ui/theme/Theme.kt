@@ -18,7 +18,7 @@ object IterTheme {
 // Material components (sliders, switches, text fields) read these; our own buttons use Brand/Chrome directly.
 private fun scheme(c: Chrome, dark: Boolean) = (if (dark) darkColorScheme() else lightColorScheme()).copy(
     primary = Brand.Sage,
-    onPrimary = Brand.Cream,
+    onPrimary = Brand.OnSage,
     primaryContainer = Brand.Mist,
     onPrimaryContainer = LightChrome.ink,
     secondary = Brand.ChartSlate,

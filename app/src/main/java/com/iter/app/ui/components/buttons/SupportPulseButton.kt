@@ -97,9 +97,9 @@ fun SupportPulseButton(
     Box(modifier.padding(ringOffset)) {
         ButtonBase(
             text, onClick, ringModifier, enabled = true, RoundedCornerShape(999.dp), 52.dp, 26.dp, ButtonText.Large,
-            normal = ButtonColors(Brand.Sage, Brand.Cream),
-            hovered = ButtonColors(Brand.SageHover, Brand.Cream),
-            pressed = ButtonColors(Brand.SagePressed, Brand.Cream),
+            normal = ButtonColors(Brand.Sage, Brand.OnSage),
+            hovered = ButtonColors(Brand.SageHover, Brand.OnSage),
+            pressed = ButtonColors(Brand.SagePressed, Brand.OnSage),
             icon = icon,
             iconSize = 17.dp,
         )

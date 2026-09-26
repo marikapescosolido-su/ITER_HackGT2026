@@ -38,7 +38,7 @@ fun ChoiceChip(
     Text(
         text = text,
         style = ButtonText.Small,
-        color = if (selected) Brand.Cream else chrome.ink,
+        color = if (selected) Brand.OnSage else chrome.ink,
         modifier = modifier
             .defaultMinSize(minHeight = 36.dp)
             .clip(ChipShape)

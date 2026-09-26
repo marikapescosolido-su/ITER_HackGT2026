@@ -23,6 +23,8 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
             Text("Care team: ${p.clinicianName}, ${p.clinic}", style = MaterialTheme.typography.bodyMedium)
             Text("Monitoring: ${p.monitoredMedication.name} ${p.monitoredMedication.dose}", style = MaterialTheme.typography.bodyMedium)
         }
+        MedicationsCard()
+        MedicationCalendarCard()
         SectionCard(title = "Reports") {
             Text(
                 "Sent to ${p.clinicianName} ${ReportSchedule.label(repo.reportSettings.intervalDays)}, automatically by email.",

@@ -23,6 +23,22 @@ data class Medication(
     val since: LocalDate,
     val purpose: String,
     val isMonitored: Boolean = false,
+    /** Pills at home, if the patient has counted them. Null = unknown, so no refill estimate. */
+    val supply: PillSupply? = null,
+)
+
+/** A pill count on a given day; doses logged after that day are subtracted to estimate what's left. */
+data class PillSupply(
+    val pillsOnHand: Int,
+    val countedOn: LocalDate,
+    val pillsPerDose: Int = 1,
+)
+
+/** Whether one medication was taken on one day. Days without a record are unknown, not missed. */
+data class DoseRecord(
+    val date: LocalDate,
+    val medication: String,
+    val taken: Boolean,
 )
 
 data class DoseChange(

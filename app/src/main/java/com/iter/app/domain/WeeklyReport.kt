@@ -2,6 +2,7 @@ package com.iter.app.domain
 
 import com.iter.app.data.model.CheckIn
 import com.iter.app.data.model.DoseChange
+import com.iter.app.data.model.DoseRecord
 import com.iter.app.data.model.Patient
 import com.iter.app.data.model.Phq9
 import com.iter.app.data.model.Question
@@ -24,6 +25,8 @@ data class WeeklyReport(
     val observations: List<SupporterObservation>,
     val doseChangesInPeriod: List<DoseChange>,
     val safetyFlags: List<String>,
+    /** Medications with ${MedicationSupply.LOW_DAYS} or fewer days of pills left. */
+    val refillAlerts: List<RefillAlert> = emptyList(),
 ) {
     val completedDays: Int get() = checkIns.size
 
@@ -49,6 +52,7 @@ object ReportBuilder {
         observations: List<SupporterObservation>,
         windowDays: Int,
         includeSupporter: Boolean,
+        doseLog: List<DoseRecord> = emptyList(),
         end: LocalDate = LocalDate.now(),
     ): WeeklyReport {
         val start = end.minusDays(windowDays.toLong() - 1)
@@ -79,6 +83,7 @@ object ReportBuilder {
             observations = if (includeSupporter) observations.filter { !it.date.isAfter(end) } else emptyList(),
             doseChangesInPeriod = patient.doseChanges.filter { !it.date.isBefore(previousStart) },
             safetyFlags = flags,
+            refillAlerts = MedicationSupply.refillAlerts(patient, doseLog, end),
         )
     }
 }

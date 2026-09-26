@@ -25,11 +25,11 @@ import com.iter.app.ui.theme.LightChrome
 
 /** Candidate replacements for Brand.Sage, from the current sage to brighter greens. Pick one, then delete this. */
 private val GreenOptions = listOf(
-    "Current Sage" to Brand.Sage,
+    "Old Sage" to Color(0xFF757F64),
     "1 Bright Sage" to Color(0xFF7E9163),
     "2 Olive Leaf" to Color(0xFF7F9A55),
     "3 Moss" to Color(0xFF6F9B4E),
-    "4 Fern" to Color(0xFF62A052),
+    "4 Fern (in use)" to Brand.Sage,
     "5 Leaf" to Color(0xFF58A85A),
     "6 Spring" to Color(0xFF6BBF5E),
     "7 Meadow" to Color(0xFF86C96E),
