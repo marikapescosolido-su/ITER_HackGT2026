@@ -31,6 +31,8 @@ object DemoRepository {
     val supporters = mutableStateListOf<Supporter>().apply { addAll(SampleSupport.supporters) }
     val observations = mutableStateListOf<SupporterObservation>().apply { addAll(SampleSupport.observations()) }
     val nudges = mutableStateListOf<Nudge>()
+    var reminderTime by mutableStateOf("8:00 pm")
+    var remindLaterRequested by mutableStateOf(false)
 
     val today: LocalDate get() = LocalDate.now()
     val todaysCheckIn: CheckIn? get() = checkIns.firstOrNull { it.date == today }

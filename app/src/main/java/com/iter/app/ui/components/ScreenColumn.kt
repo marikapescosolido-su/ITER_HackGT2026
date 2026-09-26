@@ -14,12 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.iter.app.ui.components.buttons.TertiaryButton
 
-/** Standard scrolling page: optional back button, title, subtitle, then content. */
+/** Standard scrolling page: optional top bar or back button, title, subtitle, then content. */
 @Composable
 fun ScreenColumn(
     title: String,
     onBack: (() -> Unit)? = null,
     subtitle: String? = null,
+    topBar: (@Composable () -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
@@ -29,6 +30,7 @@ fun ScreenColumn(
             .padding(horizontal = 20.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        topBar?.invoke()
         if (onBack != null) {
             TertiaryButton("Back", onBack)
         }
