@@ -12,6 +12,7 @@ import com.iter.app.ui.patient.home.NotificationsScreen
 import com.iter.app.ui.patient.home.PatientHomeScreen
 import com.iter.app.ui.patient.onboarding.OnboardingScreen
 import com.iter.app.ui.patient.safety.SafetyScreen
+import com.iter.app.ui.patient.sharing.InviteScreen
 import com.iter.app.ui.patient.sharing.SharingScreen
 import com.iter.app.ui.patient.weekly.Phq9Screen
 
@@ -40,7 +41,10 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
         })
     }
     composable(Routes.SAFETY) { SafetyScreen(onDone = { nav.popBackStack() }) }
-    composable(Routes.SHARING) { SharingScreen(onBack = { nav.popBackStack() }) }
+    composable(Routes.SHARING) {
+        SharingScreen(onBack = { nav.popBackStack() }, onInvite = { nav.navigate(Routes.INVITE) })
+    }
+    composable(Routes.INVITE) { InviteScreen(onBack = { nav.popBackStack() }, onSent = { nav.popBackStack() }) }
     composable(Routes.NOTIFICATIONS) {
         NotificationsScreen(onBack = { nav.popBackStack() }, onOpen = { nav.navigate(it) })
     }

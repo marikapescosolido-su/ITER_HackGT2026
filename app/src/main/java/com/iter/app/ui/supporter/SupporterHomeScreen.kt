@@ -1,9 +1,7 @@
 package com.iter.app.ui.supporter
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,6 +14,9 @@ import com.iter.app.ui.components.ChartSeries
 import com.iter.app.ui.components.LineChart
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
+import com.iter.app.ui.components.buttons.PrimaryButton
+import com.iter.app.ui.components.buttons.UtilityButton
+import com.iter.app.ui.components.icons.IterIcons
 import com.iter.app.ui.navigation.Routes
 
 /** What Sam sees. Content depends on the role the patient gave them. */
@@ -38,12 +39,16 @@ fun SupporterHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
 
     ScreenColumn(
         title = "Supporting ${patient.name}",
-        subtitle = "You're a ${me.role.label.lowercase()}. ${me.role.description}",
+        subtitle = "Your role: ${me.role.label}. ${me.role.description}",
         onBack = onBack,
     ) {
         SectionCard(title = "Today") {
             Text(if (done) "${patient.name} has checked in today." else "${patient.name} hasn't checked in yet today.")
             Text("Streak: ${streak.days} days", style = MaterialTheme.typography.bodyMedium)
+            if (me.role != SupportRole.Viewer && !done) {
+                Text("A kind word can help. Nudges are limited to one a day.", style = MaterialTheme.typography.bodySmall)
+                UtilityButton("Send a nudge", IterIcons.Heart, { onOpen(Routes.NUDGE) }, Modifier.fillMaxWidth())
+            }
         }
 
         if (repo.sharing.supporterMoodNotifications) {
@@ -68,11 +73,9 @@ fun SupporterHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
             )
         }
 
-        if (me.role != SupportRole.Viewer && !done) {
-            Button(onClick = { onOpen(Routes.NUDGE) }, modifier = Modifier.fillMaxWidth()) { Text("Send a kind nudge") }
-        }
-        OutlinedButton(onClick = { onOpen(Routes.SUPPORTER_SURVEY) }, modifier = Modifier.fillMaxWidth()) {
-            Text("Weekly observation (2 min)")
+        SectionCard(title = "Your weekly check-in") {
+            Text("How has ${patient.name} seemed to you this week? About 2 minutes.", style = MaterialTheme.typography.bodyMedium)
+            PrimaryButton("Start weekly check-in", { onOpen(Routes.SUPPORTER_SURVEY) }, Modifier.fillMaxWidth())
         }
         if (me.role == SupportRole.Editor) {
             // TODO(team): "Suggest a correction" flow. Edits must be attributed and approved by the patient.

@@ -13,6 +13,7 @@ object Routes {
     const val PHQ9 = "patient/phq9"
     const val SAFETY = "patient/safety"
     const val SHARING = "patient/sharing"
+    const val INVITE = "patient/invite"
     const val NOTIFICATIONS = "patient/notifications"
     const val ACCOUNT = "patient/account"
     const val MISSED_SURVEY = "patient/missed_survey"
