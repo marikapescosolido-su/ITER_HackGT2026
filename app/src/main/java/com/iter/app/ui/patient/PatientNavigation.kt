@@ -25,7 +25,7 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
         })
     }
     composable(Routes.CHECK_IN) {
-        CheckInScreen(onBack = { nav.popBackStack() }, onSubmitted = {
+        CheckInScreen(onBack = { nav.popBackStack() }, onSubmitted = { _ ->
             nav.navigate(Routes.CHECK_IN_DONE) { popUpTo(Routes.PATIENT_HOME) }
         })
     }

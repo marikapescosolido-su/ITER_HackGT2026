@@ -25,7 +25,7 @@ fun ScaleQuestion(
     valueText: String = value.roundToInt().toString(),
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(prompt, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
             Text(valueText, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
         }
