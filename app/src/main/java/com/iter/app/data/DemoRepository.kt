@@ -34,6 +34,11 @@ object DemoRepository {
     var reminderTime by mutableStateOf("8:00 pm")
     var remindLaterRequested by mutableStateOf(false)
 
+    /** Set when answers or app use suggest a hard moment; the patient home shows the Concern Alert overlay. */
+    var concernPending by mutableStateOf(false)
+    var concernDismissedToday by mutableStateOf(false)
+    val clinicianNotes = mutableStateListOf<com.iter.app.data.model.ClinicianNote>()
+
     val today: LocalDate get() = LocalDate.now()
     val todaysCheckIn: CheckIn? get() = checkIns.firstOrNull { it.date == today }
 

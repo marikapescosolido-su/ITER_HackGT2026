@@ -19,10 +19,10 @@ import com.iter.app.ui.components.ScreenColumn
 
 /**
  * The weekly report. The doctor receives this as a PDF; this screen is the same content on the phone.
- * Order follows the README: visual overview first, AI-assisted summary, then the exact answers.
+ * Top: the three equal provider utility buttons (spec F). Order follows the README: visual overview first, AI-assisted summary, then the exact answers.
  */
 @Composable
-fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit) {
+fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit, onOpenMedication: () -> Unit) {
     val repo = DemoRepository
     val context = LocalContext.current
     val report = ReportBuilder.build(
@@ -42,6 +42,7 @@ fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit) {
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             UtilityButton("Survey frequency", IterIcons.Calendar, onOpenSettings, Modifier.fillMaxWidth())
+            UtilityButton("Medication context", IterIcons.Pill, onOpenMedication, Modifier.fillMaxWidth())
             UtilityButton("Export PDF via email", IterIcons.Mail, {
                 val ok = ReportPdfExporter.export(context, report, insights)
                 if (!ok) Toast.makeText(context, "PDF export isn't built yet", Toast.LENGTH_SHORT).show()
@@ -62,6 +63,7 @@ fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit) {
         SupporterSection(report)
         MissingDataSection(report)
         NotesSection(report)
+        ClinicianNotesSection()
         if (repo.reportSettings.includeRawAnswers) RawAnswersSection(report)
         DisclaimerSection()
     }

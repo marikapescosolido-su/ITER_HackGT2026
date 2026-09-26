@@ -6,6 +6,9 @@ import androidx.navigation.compose.composable
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.patient.checkin.CheckInDoneScreen
 import com.iter.app.ui.patient.checkin.CheckInScreen
+import com.iter.app.data.DemoRepository
+import com.iter.app.domain.ConcernCheck
+import com.iter.app.ui.patient.concern.VoiceCheckInScreen
 import com.iter.app.ui.patient.home.AccountScreen
 import com.iter.app.ui.patient.home.MissedSurveyScreen
 import com.iter.app.ui.patient.home.NotificationsScreen
@@ -26,7 +29,8 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
         })
     }
     composable(Routes.CHECK_IN) {
-        CheckInScreen(onBack = { nav.popBackStack() }, onSubmitted = { _ ->
+        CheckInScreen(onBack = { nav.popBackStack() }, onSubmitted = { checkIn ->
+            if (ConcernCheck.fromCheckIn(checkIn)) DemoRepository.concernPending = true
             nav.navigate(Routes.CHECK_IN_DONE) { popUpTo(Routes.PATIENT_HOME) }
         })
     }
@@ -45,6 +49,7 @@ fun NavGraphBuilder.patientScreens(nav: NavController) {
         SharingScreen(onBack = { nav.popBackStack() }, onInvite = { nav.navigate(Routes.INVITE) })
     }
     composable(Routes.INVITE) { InviteScreen(onBack = { nav.popBackStack() }, onSent = { nav.popBackStack() }) }
+    composable(Routes.VOICE_CHECK_IN) { VoiceCheckInScreen(onDone = { nav.popBackStack() }) }
     composable(Routes.NOTIFICATIONS) {
         NotificationsScreen(onBack = { nav.popBackStack() }, onOpen = { nav.navigate(it) })
     }

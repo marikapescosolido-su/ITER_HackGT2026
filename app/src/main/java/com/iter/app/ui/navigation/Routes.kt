@@ -17,6 +17,7 @@ object Routes {
     const val NOTIFICATIONS = "patient/notifications"
     const val ACCOUNT = "patient/account"
     const val MISSED_SURVEY = "patient/missed_survey"
+    const val VOICE_CHECK_IN = "patient/voice_check_in"
 
     // Supporter (Sam's phone)
     const val SUPPORTER_HOME = "supporter/home"
@@ -26,4 +27,5 @@ object Routes {
     // Clinician (the weekly report / PDF)
     const val REPORT = "clinician/report"
     const val REPORT_SETTINGS = "clinician/report_settings"
+    const val MEDICATION_CONTEXT = "clinician/medication_context"
 }

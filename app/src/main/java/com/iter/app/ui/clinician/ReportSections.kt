@@ -115,6 +115,15 @@ fun NotesSection(report: WeeklyReport) {
 }
 
 @Composable
+fun ClinicianNotesSection() {
+    val notes = com.iter.app.data.DemoRepository.clinicianNotes
+    if (notes.isEmpty()) return
+    SectionCard(title = "Clinician notes", source = DataSource.Clinician) {
+        notes.forEach { Text("${formatDate(it.date)}: ${it.text}") }
+    }
+}
+
+@Composable
 fun RawAnswersSection(report: WeeklyReport) {
     SectionCard(title = "All answers", source = DataSource.Patient) {
         report.checkIns.forEach { c ->

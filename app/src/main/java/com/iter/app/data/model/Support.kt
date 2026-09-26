@@ -32,3 +32,9 @@ data class SupporterObservation(
     val social: Int,
     val note: String = "",
 )
+
+/** A note the clinician adds from the Medication context screen. Shown in the report as a clinician note. */
+data class ClinicianNote(
+    val date: LocalDate,
+    val text: String,
+)

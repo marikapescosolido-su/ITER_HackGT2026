@@ -19,6 +19,10 @@ fun DemoLauncherScreen(onOpen: (String) -> Unit) {
         LauncherCard("Supporter", "Sam's phone (partner): updates, nudges, weekly observation") { onOpen(Routes.SUPPORTER_HOME) }
         LauncherCard("Clinician", "${patient.clinicianName}'s weekly report (sent as a PDF)") { onOpen(Routes.REPORT) }
         LauncherCard("New patient", "Onboarding and baseline assessment") { onOpen(Routes.ONBOARDING) }
+        LauncherCard("Concern alert", "Patient home as if today's answers suggested a hard day") {
+            DemoRepository.concernPending = true
+            onOpen(Routes.PATIENT_HOME)
+        }
         LauncherCard("Design system", "All buttons and states, for checking against the spec") { onOpen(Routes.DESIGN) }
     }
 }
