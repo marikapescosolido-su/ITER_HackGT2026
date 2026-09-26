@@ -1,8 +1,10 @@
-# ITER — A Precision-Medicine Monitoring and Support App
+# ITER: A Precision-Medicine Monitoring and Support App
 
-ITER is a digital health application designed to bring a precision-medicine approach to the monitoring of depression treatments and, in the future, other conditions that require ongoing medication management, such as epilepsy. The name “ITER,” derived from the Latin word for “journey” or “path,” reflects the application’s central purpose: helping patients, clinicians, and trusted supporters understand a person’s treatment journey over time.
+ITER is a digital health application designed to bring a **precision-medicine approach to the monitoring of depression treatments** and, in the future, other conditions that require ongoing medication management, such as epilepsy and inflammatory bowel disease (IBD). The name “ITER” is derived from the Latin word for “journey” or “path”, and reflects the application’s central purpose: helping patients, clinicians, and trusted supporters understand a person’s treatment journey over time.
 
-Today, decisions about antidepressant medication can sometimes feel inconsistent, subjective, or heavily dependent on trial and error. A medication that works well for one person may be ineffective or produce difficult side effects for another. However, clinicians often have limited information between appointments. A patient may be seen only once a month or less, and during that appointment they may struggle to remember precisely how they felt on individual days, when a symptom changed, how well they slept, or whether a side effect appeared after a dosage adjustment. Recent emotions can also influence how patients remember the preceding weeks.
+## Why is it needed?
+
+Today, decisions about antidepressant medication can sometimes feel inconsistent, subjective, or heavily dependent on trial and error. A medication that works well for one person may be ineffective or produce difficult side effects for another. However, clinicians often have limited information between appointments. A patient may be seen only once a month or less, and during that appointment, they may struggle to remember precisely how they felt on individual days, when a symptom changed, how well they slept, or whether a side effect appeared after a dosage adjustment. Recent emotions can also influence how patients remember the preceding weeks.
 
 As a result, treatment decisions may be based on incomplete or retrospective information. This can delay the identification of an effective medication, make side effects harder to recognize, and increase the time required to determine whether a treatment is helping.
 
