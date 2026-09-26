@@ -1,9 +1,9 @@
 package com.iter.app.ui.supporter
 
+import com.iter.app.ui.components.icons.IterIcons
+import com.iter.app.ui.components.buttons.PrimaryButton
+import com.iter.app.ui.components.buttons.ChoiceChip
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -21,7 +21,6 @@ import com.iter.app.ui.components.SectionCard
 import java.time.LocalDateTime
 
 /** Nudges are limited to one per day so they never become pressure. */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NudgeScreen(onBack: () -> Unit) {
     val repo = DemoRepository
@@ -36,18 +35,20 @@ fun NudgeScreen(onBack: () -> Unit) {
             else -> {
                 SectionCard(title = "Pick a message or write your own") {
                     SupportMessages.nudgeTemplates.forEach { template ->
-                        FilterChip(selected = message == template, onClick = { message = template }, label = { Text(template) })
+                        ChoiceChip(template, message == template, { message = template }, Modifier.fillMaxWidth())
                     }
                     OutlinedTextField(value = message, onValueChange = { message = it }, modifier = Modifier.fillMaxWidth())
                 }
-                Button(
-                    onClick = {
+                PrimaryButton(
+                    "Send nudge",
+                    {
                         repo.sendNudge(Nudge(DEMO_SUPPORTER, message.trim(), LocalDateTime.now()))
                         sent = true
                     },
+                    Modifier.fillMaxWidth(),
                     enabled = message.isNotBlank(),
-                    modifier = Modifier.fillMaxWidth(),
-                ) { Text("Send") }
+                    icon = IterIcons.Send,
+                )
                 Text("Only your message is shared. Nothing about ${repo.patient.name}'s answers.", style = MaterialTheme.typography.bodySmall)
             }
         }

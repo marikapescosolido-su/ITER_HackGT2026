@@ -1,10 +1,9 @@
 package com.iter.app.ui.clinician
 
+import com.iter.app.ui.components.buttons.ChoiceChip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -17,7 +16,6 @@ import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
 
 /** Clinician chooses how often reports are sent and how many days they cover. */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReportSettingsScreen(onBack: () -> Unit) {
     val repo = DemoRepository
@@ -27,14 +25,14 @@ fun ReportSettingsScreen(onBack: () -> Unit) {
         SectionCard(title = "Send a report every") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 listOf(7, 14, 28).forEach { days ->
-                    FilterChip(selected = s.intervalDays == days, onClick = { repo.reportSettings = s.copy(intervalDays = days) }, label = { Text("$days days") })
+                    ChoiceChip("$days days", s.intervalDays == days, { repo.reportSettings = s.copy(intervalDays = days) })
                 }
             }
         }
         SectionCard(title = "Each report covers") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 listOf(7, 14, 28).forEach { days ->
-                    FilterChip(selected = s.windowDays == days, onClick = { repo.reportSettings = s.copy(windowDays = days) }, label = { Text("$days days") })
+                    ChoiceChip("$days days", s.windowDays == days, { repo.reportSettings = s.copy(windowDays = days) })
                 }
             }
         }

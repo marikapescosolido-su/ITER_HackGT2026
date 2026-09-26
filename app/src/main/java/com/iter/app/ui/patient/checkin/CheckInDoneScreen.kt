@@ -1,7 +1,9 @@
 package com.iter.app.ui.patient.checkin
 
+import com.iter.app.ui.components.buttons.ButtonSize
+import com.iter.app.ui.components.buttons.PrimaryButton
+import com.iter.app.ui.components.buttons.StreakChip
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,7 +12,6 @@ import com.iter.app.data.DemoRepository
 import com.iter.app.domain.Streak
 import com.iter.app.domain.SupportMessages
 import com.iter.app.ui.components.ScreenColumn
-import com.iter.app.ui.components.SectionCard
 
 @Composable
 fun CheckInDoneScreen(onDone: () -> Unit) {
@@ -26,10 +27,8 @@ fun CheckInDoneScreen(onDone: () -> Unit) {
 
     ScreenColumn(title = "Check-in saved") {
         messages.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
-        SectionCard(title = "Streak") {
-            Text("${streak.days} days", style = MaterialTheme.typography.headlineSmall)
-            Text(streak.message)
-        }
-        Button(onClick = onDone, modifier = Modifier.fillMaxWidth()) { Text("Done") }
+        StreakChip("${streak.days}-day streak")
+        Text(streak.message, style = MaterialTheme.typography.bodyMedium)
+        PrimaryButton("Done", onDone, Modifier.fillMaxWidth(), size = ButtonSize.Large)
     }
 }

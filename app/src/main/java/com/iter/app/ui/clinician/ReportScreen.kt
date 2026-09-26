@@ -1,11 +1,11 @@
 package com.iter.app.ui.clinician
 
+import androidx.compose.foundation.layout.Column
+import com.iter.app.ui.components.icons.IterIcons
+import com.iter.app.ui.components.buttons.UtilityButton
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -40,15 +40,12 @@ fun ReportScreen(onBack: () -> Unit, onOpenSettings: () -> Unit) {
         subtitle = "${report.patient.name} · ${formatDate(report.start)} to ${formatDate(report.end)} · for ${report.patient.clinicianName}",
         onBack = onBack,
     ) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(
-                onClick = {
-                    val ok = ReportPdfExporter.export(context, report, insights)
-                    if (!ok) Toast.makeText(context, "PDF export isn't built yet", Toast.LENGTH_SHORT).show()
-                },
-                modifier = Modifier.weight(1f),
-            ) { Text("Export PDF") }
-            OutlinedButton(onClick = onOpenSettings, modifier = Modifier.weight(1f)) { Text("Settings") }
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            UtilityButton("Survey frequency", IterIcons.Calendar, onOpenSettings, Modifier.fillMaxWidth())
+            UtilityButton("Export PDF via email", IterIcons.Mail, {
+                val ok = ReportPdfExporter.export(context, report, insights)
+                if (!ok) Toast.makeText(context, "PDF export isn't built yet", Toast.LENGTH_SHORT).show()
+            }, Modifier.fillMaxWidth())
         }
 
         if (!repo.sharing.shareWithClinician) {

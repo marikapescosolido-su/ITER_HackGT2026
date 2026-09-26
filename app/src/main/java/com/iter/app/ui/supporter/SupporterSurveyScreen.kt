@@ -1,7 +1,7 @@
 package com.iter.app.ui.supporter
 
+import com.iter.app.ui.components.buttons.PrimaryButton
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -51,8 +51,9 @@ fun SupporterSurveyScreen(onBack: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-        Button(
-            onClick = {
+        PrimaryButton(
+            "Save",
+            {
                 DemoRepository.saveObservation(
                     SupporterObservation(
                         date = DemoRepository.today,
@@ -66,8 +67,8 @@ fun SupporterSurveyScreen(onBack: () -> Unit) {
                 )
                 saved = true
             },
-            modifier = Modifier.fillMaxWidth(),
-        ) { Text("Save") }
+            Modifier.fillMaxWidth(),
+        )
         Text("Describe what you saw, not a diagnosis.", style = MaterialTheme.typography.bodySmall)
     }
 }

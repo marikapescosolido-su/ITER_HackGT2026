@@ -9,10 +9,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.iter.app.ui.components.buttons.TertiaryButton
 
 /** Standard scrolling page: optional back button, title, subtitle, then content. */
 @Composable
@@ -30,7 +30,7 @@ fun ScreenColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         if (onBack != null) {
-            TextButton(onClick = onBack, modifier = Modifier.padding(start = 0.dp)) { Text("‹ Back") }
+            TertiaryButton("Back", onBack)
         }
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(title, style = MaterialTheme.typography.headlineMedium, color = MaterialTheme.colorScheme.onBackground)

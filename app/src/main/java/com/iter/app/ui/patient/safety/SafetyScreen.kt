@@ -1,10 +1,11 @@
 package com.iter.app.ui.patient.safety
 
+import com.iter.app.ui.components.icons.IterIcons
+import com.iter.app.ui.components.buttons.TertiaryButton
+import com.iter.app.ui.components.buttons.HelplineButton
 import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,14 +27,16 @@ fun SafetyScreen(onDone: () -> Unit) {
             SectionCard(title = resource.title) {
                 Text(resource.detail)
                 resource.phone?.let { phone ->
-                    Button(
-                        onClick = { context.startActivity(Intent(Intent.ACTION_DIAL, "tel:$phone".toUri())) },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) { Text("Call $phone") }
+                    HelplineButton(
+                        "Call $phone",
+                        { context.startActivity(Intent(Intent.ACTION_DIAL, "tel:$phone".toUri())) },
+                        Modifier.fillMaxWidth(),
+                        icon = IterIcons.Phone,
+                    )
                 }
             }
         }
         Text(Safety.DISCLAIMER, style = MaterialTheme.typography.bodySmall)
-        OutlinedButton(onClick = onDone, modifier = Modifier.fillMaxWidth()) { Text("Back to home") }
+        TertiaryButton("Back to home", onDone)
     }
 }

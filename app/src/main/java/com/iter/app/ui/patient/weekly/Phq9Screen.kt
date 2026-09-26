@@ -1,12 +1,11 @@
 package com.iter.app.ui.patient.weekly
 
+import com.iter.app.ui.components.buttons.PrimaryButton
+import com.iter.app.ui.components.buttons.ChoiceChip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,7 +19,7 @@ import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
 
 /** Weekly PHQ-9. If item 9 is above 0, [onSubmitted] gets true and the safety screen opens. */
-@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Phq9Screen(onBack: () -> Unit, onSubmitted: (needsSafety: Boolean) -> Unit) {
     val answers = remember { mutableStateListOf<Int?>().apply { repeat(9) { add(null) } } }
@@ -35,23 +34,20 @@ fun Phq9Screen(onBack: () -> Unit, onSubmitted: (needsSafety: Boolean) -> Unit) 
                 Text("${i + 1}. $question", style = MaterialTheme.typography.bodyLarge)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Phq9.options.forEachIndexed { value, option ->
-                        FilterChip(
-                            selected = answers[i] == value,
-                            onClick = { answers[i] = value },
-                            label = { Text(option) },
-                        )
+                        ChoiceChip(option, answers[i] == value, { answers[i] = value })
                     }
                 }
             }
         }
-        Button(
-            onClick = {
+        PrimaryButton(
+            "Save",
+            {
                 val phq9 = Phq9(DemoRepository.today, answers.map { it ?: 0 })
                 DemoRepository.savePhq9(phq9)
                 onSubmitted(phq9.needsSafetyFollowUp)
             },
+            Modifier.fillMaxWidth(),
             enabled = answers.none { it == null },
-            modifier = Modifier.fillMaxWidth(),
-        ) { Text("Save") }
+        )
     }
 }
