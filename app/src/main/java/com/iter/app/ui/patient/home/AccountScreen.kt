@@ -14,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
@@ -24,6 +25,8 @@ import com.iter.app.ui.components.buttons.ChoiceChip
 import com.iter.app.ui.components.buttons.SecondaryButton
 import com.iter.app.ui.components.buttons.TertiaryButton
 import com.iter.app.ui.navigation.Routes
+import com.iter.app.ui.theme.IterTheme
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
@@ -31,6 +34,9 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
     val p = repo.patient
     var customDays by rememberSaveable { mutableStateOf(repo.reportSettings.intervalDays.toString()) }
     val customInterval = customDays.toIntOrNull()?.takeIf { it > 0 }
+    // UI only for now: Apply saves the schedule and confirms it. Nothing is emailed yet.
+    var applied by rememberSaveable { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
     ScreenColumn(title = "Account", onBack = onBack) {
         SectionCard(title = "Your care team") {
             Text(p.clinicianName, style = MaterialTheme.typography.titleMedium)
@@ -48,6 +54,7 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
                         onClick = {
                             repo.reportSettings = repo.reportSettings.copy(intervalDays = days)
                             customDays = days.toString()
+                            applied = false
                         },
                     )
                 }
@@ -59,7 +66,10 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
             ) {
                 OutlinedTextField(
                     value = customDays,
-                    onValueChange = { input -> customDays = input.filter(Char::isDigit) },
+                    onValueChange = { input ->
+                        customDays = input.filter(Char::isDigit)
+                        applied = false
+                    },
                     label = { Text("Custom number of days") },
                     supportingText = {
                         if (customDays.isNotEmpty() && customInterval == null) Text("Enter at least 1 day")
@@ -74,9 +84,19 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
                     onClick = {
                         customInterval?.let { days ->
                             repo.reportSettings = repo.reportSettings.copy(intervalDays = days)
+                            applied = true
+                            focusManager.clearFocus()
                         }
                     },
-                    enabled = customInterval != null && customInterval != repo.reportSettings.intervalDays,
+                    enabled = customInterval != null,
+                )
+            }
+            if (applied) {
+                val next = repo.today.plusDays(repo.reportSettings.intervalDays.toLong())
+                Text(
+                    "Saved. Your next report goes to ${p.clinicianName} on ${next.format(DateTimeFormatter.ofPattern("EEEE, MMM d"))}.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = IterTheme.chrome.brandText,
                 )
             }
             Text(
