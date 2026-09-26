@@ -5,7 +5,7 @@
         android:allowBackup="false"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Checkin">
+        android:theme="@style/Theme.Iter">
         <activity
             android:name=".MainActivity"
             android:exported="true">

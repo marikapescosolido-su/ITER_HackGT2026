@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.team.checkin"
+    namespace = "com.iter.app"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.team.checkin"
+        applicationId = "com.iter.app"
         minSdk = 26
         targetSdk = 37
         versionCode = 1

@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "mood-checkin"
+rootProject.name = "ITER"
 include(":app")
