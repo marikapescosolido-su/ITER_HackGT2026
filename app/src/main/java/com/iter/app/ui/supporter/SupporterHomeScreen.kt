@@ -1,13 +1,20 @@
 package com.iter.app.ui.supporter
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.iter.app.data.DemoRepository
 import com.iter.app.data.model.Question
 import com.iter.app.data.model.SupportRole
+import com.iter.app.domain.Lantern
 import com.iter.app.domain.Streak
 import com.iter.app.domain.SupportMessages
 import com.iter.app.domain.SupporterSummary
@@ -16,6 +23,7 @@ import com.iter.app.ui.components.SectionCard
 import com.iter.app.ui.components.buttons.PrimaryButton
 import com.iter.app.ui.components.buttons.UtilityButton
 import com.iter.app.ui.components.icons.IterIcons
+import com.iter.app.ui.components.illustration.LanternArt
 import com.iter.app.ui.navigation.Routes
 
 /** What Sam sees. Content depends on the role the patient gave them. */
@@ -59,7 +67,14 @@ fun SupporterHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
         if (me.challengeEnabled) {
             val goal = 30
             SectionCard(title = "Shared goal with ${patient.name}") {
-                Text("${streak.days.coerceAtMost(goal)} of $goal days of check-ins together.")
+                val lantern = Lantern.compute(repo.checkIns)
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    LanternArt(lantern.brightness, Modifier.size(64.dp))
+                    Column {
+                        Text("${patient.name}'s lantern: ${lantern.level} of ${Lantern.MAX} this week")
+                        Text("${streak.days.coerceAtMost(goal)} of $goal days of check-ins together.", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
                 Text("Celebrate showing up, not scores.", style = MaterialTheme.typography.bodySmall)
             }
         }
