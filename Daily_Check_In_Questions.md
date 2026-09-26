@@ -187,19 +187,7 @@ Slider: `0 — They felt manageable` to `10 — I could not manage them`
 
 Everyday functioning helps show how strongly symptoms are affecting a person's life. It can also reveal improvement that may not yet appear in an overall mood score.
 
-### 16. Medication
-
-**How different was taking your medication today from the plan you agreed on with your care team?**
-
-Slider: `0 — I followed the plan exactly` to `10 — I did not take the scheduled medication`
-
-The screen should also provide a separate **No dose was scheduled today** control. If the slider is above `0`, the app can ask whether the dose was late, incomplete, or missed.
-
-#### Why are we asking you this?
-
-A delayed, partial, or missed dose can influence mood, sleep, physical symptoms, and side effects. Recording it allows the care team to interpret other answers accurately; it is useful information, not something to be judged.
-
-### 17. Feeling unusually “revved up”
+### 16. Feeling unusually “revved up”
 
 **Did you feel unusually energized or “revved up” today—like needing much less sleep, having racing thoughts, talking much more, or acting more impulsively than usual?**
 
@@ -209,9 +197,9 @@ Slider: `0 — Not at all` to `10 — Extremely`
 
 A sudden increase in energy or activity can be important, particularly when it appears with reduced need for sleep, racing thoughts, or impulsive behavior. These changes may require prompt review after starting or adjusting medication.
 
-### 18. Safety
+### 17. Safety
 
-**Since your last check-in, how strong were any thoughts about not wanting to be alive or about killing yourself?**
+**Since your last check-in, how strong were any thoughts about self-harm?**
 
 Slider: `0 — I did not have these thoughts` to `10 — I may be in immediate danger`
 
@@ -221,11 +209,11 @@ Thoughts about death or suicide can change quickly and may not be visible to oth
 
 The slider must **not** be the only safety assessment. Any answer above `0`, an unanswered safety question, or concerning changes elsewhere in the survey should trigger direct, clinically approved follow-up questions. A response suggesting current or immediate danger must activate the app's emergency safety pathway rather than waiting for a later report.
 
-## Optional closing note
+## 18. Optional closing note
 
 After the slider questions, offer an optional text or voice field:
 
-> **Is there anything else about today that you want to remember or want your care team to understand?**
+> **Is there anything else about today that you want to remember or want your care team to understand? (i.e., Events that could explain behavioural changes, independent from medications.**
 
 This field should always remain optional.
 
