@@ -104,6 +104,7 @@ fun AccountScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
                 style = MaterialTheme.typography.bodySmall,
             )
         }
+        WearableCard()
         MedicationsCard()
         MedicationCalendarCard()
         SectionCard(title = "Daily reminder") {

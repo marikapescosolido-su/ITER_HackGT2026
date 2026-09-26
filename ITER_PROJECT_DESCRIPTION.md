@@ -115,7 +115,7 @@ A **completion streak** can encourage patients to establish a **daily habit**. T
 
 Every **nudge sent by a trusted partner or friend** can be accompanied by a kind and encouraging sentence. Rather than functioning as a simple reminder, the nudge should feel personal and supportive. For example, a message might say, “You’ve got this—your check-in will only take a minute,” or “I’m thinking of you today. Remember to complete your check-in when you feel ready.”
 
-When both people choose to activate the feature, nudging and survey completion can also become a friendly challenge between partners or friends. They might create a shared consistency goal, celebrate a number of completed check-ins, or encourage one another to maintain their routines. This challenge should remain collaborative rather than competitive and should never create pressure, guilt, or judgment. Its purpose is to make participation feel more engaging and to remind patients that they are not completing the process alone.
+When both people choose to activate the feature, nudging and survey completion can also become a **friendly challenge between partners or friends**. They might create a shared consistency goal, celebrate a number of completed check-ins, or encourage one another to maintain their routines. This challenge should remain collaborative rather than competitive and should never create pressure, guilt, or judgment. Its purpose is to make participation feel more engaging and to remind patients that they are not completing the process alone.
 
 ## Tracking interaction patterns
 

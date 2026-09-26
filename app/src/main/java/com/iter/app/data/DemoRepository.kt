@@ -17,6 +17,7 @@ import com.iter.app.data.sample.SampleCheckIns
 import com.iter.app.data.sample.SampleDoses
 import com.iter.app.data.sample.SamplePatient
 import com.iter.app.data.sample.SampleSupport
+import com.iter.app.data.sample.SampleWearable
 import java.time.LocalDate
 
 /**
@@ -37,6 +38,7 @@ object DemoRepository {
     val nudges = mutableStateListOf<Nudge>()
     var reminderTime by mutableStateOf("8:00 pm")
     var remindLaterRequested by mutableStateOf(false)
+    val wearable = SampleWearable.watch
 
     /** Set when answers or app use suggest a hard moment; the patient home shows the Concern Alert overlay. */
     var concernPending by mutableStateOf(false)

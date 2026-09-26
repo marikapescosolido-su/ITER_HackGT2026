@@ -32,6 +32,11 @@ object IterIcons {
     val Plus = icon("M5 12h14", "M12 5v14")
     val Close = icon("M18 6 6 18", "m6 6 12 12")
     val Info = icon(circle(12f, 12f, 10f), "M12 16v-4", "M12 8h.01")
+    val Watch = icon(
+        circle(12f, 12f, 6f), "M12 10v2l1 1",
+        "m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05",
+        "m7.88 16.36.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.81-4.05",
+    )
 
     private fun icon(vararg paths: String): ImageVector {
         val builder = ImageVector.Builder(defaultWidth = 24.dp, defaultHeight = 24.dp, viewportWidth = 24f, viewportHeight = 24f)
