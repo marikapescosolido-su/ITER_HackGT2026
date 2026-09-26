@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ITER lantern logo. Content stays inside the 66dp safe zone (21..87). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- soft glow -->
+    <path android:fillColor="#33F7E2A6" android:pathData="M54,60m-26,0a26,26 0,1 1,52 0a26,26 0,1 1,-52 0" />
+    <!-- handle -->
+    <path android:strokeColor="#E9E2D8" android:strokeWidth="2.6" android:strokeLineCap="round"
+        android:pathData="M48,35 A6,6 0,0 1,60 35" />
+    <!-- cap -->
+    <path android:fillColor="#E9E2D8" android:pathData="M47,37 L61,37 L68,44 L40,44 Z" />
+    <!-- glass -->
+    <path android:fillColor="#F3CE74" android:pathData="M44,44 h20 a3,3 0,0 1,3 3 v24 a3,3 0,0 1,-3 3 h-20 a3,3 0,0 1,-3 -3 v-24 a3,3 0,0 1,3 -3 z" />
+    <!-- flame -->
+    <path android:fillColor="#FFF4D6" android:pathData="M54,50 C58,56 58,66 54,67 C50,66 50,56 54,50 Z" />
+    <!-- frame bars -->
+    <path android:strokeColor="#E9E2D8" android:strokeWidth="2" android:pathData="M42.5,45 v28 M65.5,45 v28" />
+    <!-- base -->
+    <path android:fillColor="#E9E2D8" android:pathData="M40,74 h28 a2,2 0,0 1,2 2 v1 a2,2 0,0 1,-2 2 h-28 a2,2 0,0 1,-2 -2 v-1 a2,2 0,0 1,2 -2 z" />
+</vector>

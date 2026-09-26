@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Single-color lantern for Android themed icons (no glow, no fills that turn into blobs). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2.6" android:strokeLineCap="round"
+        android:pathData="M48,35 A6,6 0,0 1,60 35" />
+    <path android:fillColor="#FFFFFF" android:pathData="M47,37 L61,37 L68,44 L40,44 Z" />
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2.4"
+        android:pathData="M44,45 h20 a2,2 0,0 1,2 2 v24 a2,2 0,0 1,-2 2 h-20 a2,2 0,0 1,-2 -2 v-24 a2,2 0,0 1,2 -2 z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M54,51 C58,57 58,66 54,67 C50,66 50,57 54,51 Z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M40,74 h28 a2,2 0,0 1,2 2 v1 a2,2 0,0 1,-2 2 h-28 a2,2 0,0 1,-2 -2 v-1 a2,2 0,0 1,2 -2 z" />
+</vector>
