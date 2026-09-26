@@ -16,6 +16,15 @@ object Brand {
     val Terracotta = Color(0xFFCB7A5C)
     val TerracottaHover = Color(0xFFB8663F)
 
+    /** Lantern light (illustration only; not a UI color). Warm so it reads as hope, not alarm. */
+    val LanternLight = Color(0xFFF3CE74)
+    val LanternGlow = Color(0xFFF7E2A6)
+    val LanternMetal = Color(0xFF3F4633)
+
+    /** Bear mascot fur (illustration only). */
+    val BearFur = Color(0xFF8B6B4E)
+    val BearMuzzle = Color(0xFFD9C3A5)
+
     /** Chart series (not in the button spec; muted so they sit next to sage). */
     val ChartSlate = Color(0xFF5E7389)
     val ChartSand = Color(0xFFB08F5A)

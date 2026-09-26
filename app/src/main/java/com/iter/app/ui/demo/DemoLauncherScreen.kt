@@ -8,13 +8,20 @@ import androidx.compose.ui.Modifier
 import com.iter.app.data.DemoRepository
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.SectionCard
+import com.iter.app.ui.components.illustration.LanternArt
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.unit.dp
 import com.iter.app.ui.navigation.Routes
 
 /** Demo-only start screen: pretend to be each person's phone. */
 @Composable
 fun DemoLauncherScreen(onOpen: (String) -> Unit) {
     val patient = DemoRepository.patient
-    ScreenColumn(title = "ITER", subtitle = "Your treatment journey, one day at a time. Choose whose phone to show:") {
+    ScreenColumn(
+        title = "ITER",
+        subtitle = "Your treatment journey, one day at a time. Choose whose phone to show:",
+        topBar = { LanternArt(brightness = 1f, modifier = Modifier.size(120.dp)) },
+    ) {
         LauncherCard("Patient", "${patient.name}'s phone: daily check-in, streak, sharing") { onOpen(Routes.PATIENT_HOME) }
         LauncherCard("Supporter", "Sam's phone (partner): updates, nudges, weekly observation") { onOpen(Routes.SUPPORTER_HOME) }
         LauncherCard("New patient", "Onboarding and baseline assessment") { onOpen(Routes.ONBOARDING) }

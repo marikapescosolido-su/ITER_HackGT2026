@@ -1,6 +1,12 @@
 package com.iter.app.ui.patient.home
 
 import android.content.Intent
+import com.iter.app.ui.components.illustration.BearPath
+import com.iter.app.ui.components.buttons.StreakChip
+import com.iter.app.domain.Streak
+import com.iter.app.domain.Lantern
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +29,21 @@ import com.iter.app.ui.components.buttons.SecondaryButton
 import com.iter.app.ui.components.icons.IterIcons
 import com.iter.app.ui.navigation.Routes
 import com.iter.app.ui.theme.IterTheme
+
+/** Bear + lantern header. Shows progress (days checked in), never how the patient felt. */
+@Composable
+internal fun JourneyCard() {
+    val repo = DemoRepository
+    val lantern = Lantern.compute(repo.checkIns)
+    val streak = Streak.compute(repo.checkIns)
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        BearPath(lantern.level)
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+            StreakChip("${streak.days}-day streak")
+            Text(lantern.message, style = MaterialTheme.typography.bodySmall, color = IterTheme.chrome.charcoal)
+        }
+    }
+}
 
 /** Wireflow "Daily Survey Prompt": Primary L "Start today's check-in" + Secondary "Remind me later". */
 @Composable

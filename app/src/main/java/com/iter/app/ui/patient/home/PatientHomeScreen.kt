@@ -16,7 +16,6 @@ import com.iter.app.domain.SupportMessages
 import com.iter.app.tracking.InteractionLog
 import com.iter.app.ui.components.ScreenColumn
 import com.iter.app.ui.components.buttons.IconCircleButton
-import com.iter.app.ui.components.buttons.StreakChip
 import com.iter.app.ui.components.buttons.TertiaryButton
 import com.iter.app.ui.components.icons.IterIcons
 import com.iter.app.ui.navigation.Routes
@@ -33,7 +32,7 @@ fun PatientHomeScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
         title = SupportMessages.greeting(repo.patient.name, LocalTime.now().hour),
         topBar = { HomeTopBar(onBack, onOpen) },
     ) {
-        StreakChip("${streak.days}-day streak")
+        JourneyCard()
 
         if (repo.todaysCheckIn == null) DailySurveyPrompt(onOpen) else CheckedInCard(streak.message)
         LatestNudgeCard()

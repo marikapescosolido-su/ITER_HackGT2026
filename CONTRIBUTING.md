@@ -23,6 +23,9 @@ domain/             Logic only, no UI. Easy to change and to test.
   DailyQuestionPlan.kt   which questions to ask today
   MedicationProfiles.kt  side effects/questions per medication
   Streak.kt              streak with a one-day grace period
+  Lantern.kt             weekly lantern level (+1 per check-in, -1 per missed day, never out)
+  SupporterSummary.kt    the only thing a partner learns about mood: lower / same / brighter
+  ReportSchedule.kt      report every 3 days, 1 week or 2 weeks
   SupportMessages.kt     ALL supportive wording in one place
   Safety.kt              crisis resources + disclaimer
   WeeklyReport.kt        builds the report numbers from raw data
@@ -35,6 +38,7 @@ ui/
                       CautionButton, IconCircleButton, UtilityButton, SegmentedControl,
                       SupportPulseButton, HelplineButton, HelplineLink, StreakChip, ChoiceChip
     icons/            IterIcons: outline icons, 1.8 stroke
+    illustration/     LanternArt (logo) and BearPath (bear carrying the lantern along the week)
   navigation/       Routes.kt (all route names) + AppNavHost.kt
   demo/             Start screen (pick whose phone to show) + Design system gallery
   patient/          PatientNavigation.kt + onboarding/, home/ (dashboard, notifications,
@@ -55,6 +59,11 @@ voice/              TODO (stretch): voice check-in
 `*Navigation.kt`. You don't need to touch `AppNavHost.kt`.
 
 **Changing wording:** supportive text lives in `domain/SupportMessages.kt`, so it can be reviewed in one place.
+
+## Privacy rule (most important)
+
+Only the clinician sees answers and scores (in the PDF). Never show the patient or the partner
+numbers, charts or comparisons of how the patient felt. See docs/NEXT_STEPS.md.
 
 ## Design system rules (from the button spec)
 
